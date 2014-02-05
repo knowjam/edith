@@ -4,8 +4,15 @@ using System.Collections;
 public class ImageShower : MonoBehaviour
 {
     public Texture[] tex;
-    private Texture curTex;
+    public bool destoryAfterRead = true;
+    public GUISkin skin;
+    public string[] text;
+    public string buttonText;
     
+    Texture curTex;
+    bool dialogOn;
+    int index;
+
     // Use this for initialization
     void Start()
     {
@@ -24,11 +31,41 @@ public class ImageShower : MonoBehaviour
         {
             GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), curTex);
         }
+
+        if (dialogOn)
+        {
+            GUILayout.BeginArea(new Rect(0, 3 * Screen.height / 4, Screen.width, Screen.height / 4), skin.textArea);
+
+            GUILayout.Label(text[index], skin.label);
+            if (GUILayout.Button(buttonText, skin.button))
+            {
+                ++index;
+
+                if (text.Length <= index)
+                {
+                    Application.LoadLevel(0);
+
+                    dialogOn = false;
+
+                    curTex = null;
+
+                    if (destoryAfterRead)
+                    {
+                        Destroy(gameObject);
+                    }
+                }
+            }
+
+            GUILayout.EndArea();
+        }
     }
 
-    void OnTriggerEnter2D()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        StartCoroutine("ShowSequence");
+        if (other.tag == "Player")
+        {
+            StartCoroutine("ShowSequence");
+        }
     }
 
     void OnTriggerExit2D()
@@ -37,12 +74,23 @@ public class ImageShower : MonoBehaviour
 
     IEnumerator ShowSequence()
     {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().enabled = false;
+        //var player = GameObject.FindGameObjectWithTag("Player");
+        //player.SetActive(false);
+
         foreach (var t in tex)
         {
             curTex = t;
             yield return new WaitForSeconds(0.5f);
         }
 
-        //curTex = null;
+        yield return new WaitForSeconds(2.0f);
+
+        dialogOn = true;
+
+        //GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().enabled = true;
+
+        //Destroy(gameObject);
+        //player.SetActive(true);
     }
 }
