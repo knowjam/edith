@@ -2,7 +2,12 @@ fileFormatVersion: 2
 guid: 4033a66030e830e42a365c0e0cbaabb7
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - jumpAudioClip: {instanceID: 0}
+  - attackAudioClip: {instanceID: 0}
+  - knockbackAudioClip: {instanceID: 0}
+  - climbRopePrefab: {instanceID: 0}
+  - ropeGuiTex: {fileID: 2800000, guid: 0d5f38d777ab3094d9f54866aded412d, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

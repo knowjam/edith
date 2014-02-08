@@ -27,7 +27,7 @@ public class EndingVolumeBuilder : MonoBehaviour
         {
             once = true;
 
-            if (GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().happyEnding)
+            if (GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().playerMode != Player.PlayerMode.Snake)
             {
                 Instantiate(happyEndingVolumePrefab, transform.position, Quaternion.identity);
             }

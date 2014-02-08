@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -17,18 +18,43 @@ public class Player : MonoBehaviour
     public AudioClip knockbackAudioClip;
     public GameObject climbRopePrefab;
     private float walkVelocity;
-    private bool haveRope; // 로프를 가지고 있는 지 판단한다.
-    private bool haveSnake;
-    public bool happyEnding;
+    public GUIStyle killScoreStyle;
+    public int killCount;
+    public bool transferedObject; // 다른 레벨에서 넘어온 플레이어 (진짜 플레이어)
+
+    [SerializeField]
+    private bool _haveRope; // 현재 로프를 가지고 있는 지 판단한다.
+    public bool haveRope
+    {
+        get
+        {
+            return _haveRope && playerMode == PlayerMode.Rope;
+        }
+    }
+
+    public Texture2D ropeGuiTex;    // 밧줄 아이템을 가지고 있을 때
+    public Texture2D snakeGuiTex;   // 뱀채찍을 가지고 있을 때
+    public enum PlayerMode
+    {
+        NotDetermined,      // 플레이어가 밧줄로 쓸지 뱀채찍으로 쓸지 결정하지 않음
+        Rope,               // 밧줄로 쓰기로 결정됨
+        Snake,              // 뱀채찍으로 쓰기로 결정됨
+    }
+    public PlayerMode playerMode = PlayerMode.NotDetermined;
 
     // Use this for initialization
     void Start()
     {
+        var spDebug = GameObject.Find("StartPositionDebug");
+        if (Application.isEditor && spDebug)
+        {
+            transform.position = spDebug.transform.position;
+        }
+
         isClimbing = false;
         rigidbody2D.gravityScale = gravityScale_init;
 
-        haveRope = false;
-        haveSnake = false;
+        _haveRope = false;
 
         isKnockBack = knockBackFrame + 1;
         walkVelocity = walkVelocity_init;
@@ -91,7 +117,23 @@ public class Player : MonoBehaviour
 
     }
 
+    void OnLevelWasLoaded()
+    {
+        if (GameObject.FindGameObjectsWithTag("Player").Length > 1)
+        {
+            if (!transferedObject)
+            {
+                Destroy(gameObject);
+                return;
+            }
+        }
 
+        var sp = GameObject.Find("StartPosition");
+        if (sp)
+        {
+            transform.position = sp.transform.position;
+        }
+    }
 
     void Climb()
     {
@@ -113,11 +155,11 @@ public class Player : MonoBehaviour
     void OnCollisionStay2D(Collision2D other)
     {
 
-        if (other.transform.tag == "RopeObject" && (haveRope == false))
-        {
-            haveRope = true;
-            GameObject.Destroy(other.gameObject);
-        }
+        //if (other.transform.tag == "RopeObject" && (haveRope == false))
+        //{
+        //    AcquireRope();
+        //    GameObject.Destroy(other.gameObject);
+        //}
 
         //	if (other.transform.tag == "Ground") {
 
@@ -137,12 +179,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-
-        if (other.transform.tag == "RopeObject" && (haveRope == false))
-        {
-            haveRope = true;
-            GameObject.Destroy(other.gameObject);
-        }
+        ConditionalLootRope(other);
 
         if (other.gameObject.tag == "Ground")
         {
@@ -161,11 +198,11 @@ public class Player : MonoBehaviour
     void OnTriggerStay2D(Collider2D other)
     {
 
-        if (other.transform.tag == "RopeObject" && (haveRope == false))
-        {
-            haveRope = true;
-            GameObject.Destroy(other.gameObject);
-        }
+        //if (other.transform.tag == "RopeObject" && (haveRope == false))
+        //{
+        //    AcquireRope();
+        //    GameObject.Destroy(other.gameObject);
+        //}
 
         if (other.gameObject.tag == "Ground")
         {
@@ -185,38 +222,32 @@ public class Player : MonoBehaviour
 
     public void resetRope()
     {
-        haveRope = false;
-    }
-
-    public bool isRope()
-    {
-        return haveRope;
-    }
-
-    public bool isSnake()
-    {
-        return haveSnake;
+        _haveRope = false;
     }
 
     void getSnake()
     {
-        haveSnake = true;
+        if (playerMode != PlayerMode.NotDetermined)
+        {
+            throw new Exception("getSnake() method should be called only when the player mode is not determined.");
+        }
 
-        changeAllRopeAnimationToSnakeAnimation();
+        playerMode = PlayerMode.Snake;
+        ++killCount;
+        
+        changeAllRopesToSnakes();
     }
 
-    void changeAllRopeAnimationToSnakeAnimation()
+    void changeAllRopesToSnakes()
     {
-
         foreach (var r in GameObject.FindGameObjectsWithTag("RopeObject"))
         {
-
             r.GetComponent<Animator>().SetInteger("ropestate", 1);
+            
             r.AddComponent<Bear>();
 
             r.GetComponent<BoxCollider2D>().isTrigger = false;
         }
-
     }
 
     void setClimb()
@@ -249,5 +280,31 @@ public class Player : MonoBehaviour
         }
 
         audio.PlayOneShot(knockbackAudioClip);
+    }
+
+    void OnGUI()
+    {
+        if (haveRope)
+        {
+            GUI.DrawTexture(new Rect(0, 0, 100, 100), ropeGuiTex);
+        }
+        else if (playerMode == PlayerMode.Snake)
+        {
+            GUI.DrawTexture(new Rect(0, 0, 100, 100), snakeGuiTex);
+            GUI.Label(new Rect(0, 0, 100, 100), Convert.ToString(killCount), killScoreStyle);
+        }
+    }
+
+    void ConditionalLootRope(Collider2D other)
+    {
+        if (other.transform.tag == "RopeObject"
+            && haveRope == false
+            && playerMode != PlayerMode.Snake)
+        {
+            _haveRope = true;
+            playerMode = PlayerMode.Rope;
+
+            GameObject.Destroy(other.gameObject);
+        }
     }
 }

@@ -1,26 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class Teleport : MonoBehaviour {
+public class Teleport : MonoBehaviour
+{
+    void Start()
+    {
+    }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    void Update()
+    {
+    }
 
-	void OnTriggerEnter2D(Collider2D other) {
-		
-	if (other.transform.tag == "Player") {
-
-			if (Application.loadedLevel == 2)
-				Application.LoadLevel(0);
-			else
-				Application.LoadLevel(2);
-		}
-	}
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.transform.tag == "Player")
+        {
+            if (Application.loadedLevelName == "Stage2")
+            {
+                Application.LoadLevel("MainMenu");
+            }
+            else if (Application.loadedLevelName == "Stage1")
+            {
+                var player = GameObject.Find("Player");
+                player.GetComponent<Player>().transferedObject = true;
+                UnityEngine.Object.DontDestroyOnLoad(player);
+    
+                Application.LoadLevel("Stage2");
+            }
+            else
+            {
+                throw new Exception("Unknown stage");
+            }
+        }
+    }
 }

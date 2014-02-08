@@ -24,7 +24,7 @@ public class RopeArea : MonoBehaviour
     {
         if (!isRope && other.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.R))
         {
-            if (playerObject.isRope())
+            if (playerObject.haveRope)
             {
                 isRope = true;
                 playerObject.resetRope();

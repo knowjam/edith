@@ -43,7 +43,8 @@ public class ImageShower : MonoBehaviour
 
                 if (text.Length <= index)
                 {
-                    Application.LoadLevel(0);
+                    Destroy(GameObject.Find("Player"));
+                    Application.LoadLevel("MainMenu");
 
                     dialogOn = false;
 
