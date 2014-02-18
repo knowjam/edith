@@ -21,6 +21,10 @@ public class Player : MonoBehaviour
     public GUIStyle killScoreStyle;
     public int killCount;
     public bool transferedObject; // 다른 레벨에서 넘어온 플레이어 (진짜 플레이어)
+    public LayerMask collisionMask;
+    private GameObject _playerSnakeMesh;
+    private GameObject _playerMesh;
+    private bool touchGround;
 
     [SerializeField]
     private bool _haveRope; // 현재 로프를 가지고 있는 지 판단한다.
@@ -60,12 +64,65 @@ public class Player : MonoBehaviour
         walkVelocity = walkVelocity_init;
         //	accelation_y = 0.0f;
         //	last_velocity_y = transform.rigidbody2D.velocity.y;
+
+        _playerMesh = GameObject.Find("PlayerMesh");
+
+        _playerSnakeMesh = GameObject.Find("PlayerSnakeMesh");
+        if (_playerSnakeMesh)
+        {
+            _playerSnakeMesh.SetActive(false);
+        }
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        var p = transform.position;
+        var s = GetComponent<BoxCollider2D>().size;
+        var c = GetComponent<BoxCollider2D>().center;
+
+        var origin = p + new Vector3(c.x, c.y - s.y / 2);
+
+        Debug.DrawRay(origin, Vector3.down);
+        touchGround = Physics2D.Raycast(origin, Vector3.down, 0.5f, collisionMask);
+        if (touchGround)
+        {
+            walkVelocity = walkVelocity_init;
+            if (Input.GetKey(KeyCode.LeftControl))
+            { //&& isGrounded ){
+                walkVelocity = walkVelocity_init * jumpBoost_init;
+                rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
+                //isGrounded = false;
+
+                audio.PlayOneShot(jumpAudioClip);
+            }
+        }
+
+        if (transform.FindChild("TopSensor").GetComponent<SimpleTriggerSensor>().triggered)
+        {
+            if (!GetComponent<BoxCollider2D>().isTrigger)
+            {
+                GetComponent<BoxCollider2D>().enabled = false;
+                transform.FindChild("TopSensor").GetComponent<SimpleTriggerSensor>().enabled = false;
+                GetComponents<BoxCollider2D>()[1].enabled = false;
+            }
+
+            transform.FindChild("TopSensor").GetComponent<SimpleTriggerSensor>().triggered = false;
+        }
+
+        if (transform.FindChild("BottomSensor").GetComponent<SimpleTriggerSensor>().triggered)
+        {
+            if (!GetComponent<BoxCollider2D>().isTrigger)
+            {
+                GetComponent<BoxCollider2D>().enabled = true;
+                transform.FindChild("TopSensor").GetComponent<SimpleTriggerSensor>().enabled = true;
+                GetComponents<BoxCollider2D>()[1].enabled = true;
+            }
+
+            transform.FindChild("BottomSensor").GetComponent<SimpleTriggerSensor>().triggered = false;
+        }
+
         //	accelation_y = (transform.rigidbody2D.velocity.y - last_velocity_y)/Time.deltaTime;
         //	last_velocity_y = transform.rigidbody2D.velocity.y;
 
@@ -85,7 +142,7 @@ public class Player : MonoBehaviour
 
             transform.rotation = Quaternion.Euler(0, 180, 0);
 
-            GameObject.Find("PlayerMesh").GetComponent<Animator>().SetInteger("state", 1);
+            _playerMesh.GetComponent<Animator>().SetInteger("state", 1);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
@@ -93,17 +150,21 @@ public class Player : MonoBehaviour
 
             transform.rotation = Quaternion.Euler(0, 0, 0);
 
-            GameObject.Find("PlayerMesh").GetComponent<Animator>().SetInteger("state", 1);
+            _playerMesh.GetComponent<Animator>().SetInteger("state", 1);
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            GameObject.Find("PlayerMesh").GetComponent<Animator>().SetInteger("state", 3);
+            //_playerMesh.GetComponent<Animator>().SetInteger("state", 3);
 
-            audio.PlayOneShot(attackAudioClip);
+            _playerMesh.SetActive(false);
+            _playerSnakeMesh.SetActive(true);
+            
+            //audio.PlayOneShot(attackAudioClip);
         }
         else
         {
-            GameObject.Find("PlayerMesh").GetComponent<Animator>().SetInteger("state", 0);
+            _playerMesh.SetActive(true);
+            _playerMesh.GetComponent<Animator>().SetInteger("state", 0);
         }
 
         if (Input.GetKeyUp(KeyCode.LeftArrow))
@@ -115,6 +176,12 @@ public class Player : MonoBehaviour
             rigidbody2D.velocity = new Vector2(0.0f, rigidbody2D.velocity.y);
         }
 
+    }
+
+    public void SwitchToNormalMesh()
+    {
+        _playerMesh.SetActive(true);
+        _playerSnakeMesh.SetActive(false);
     }
 
     void OnLevelWasLoaded()
@@ -152,72 +219,32 @@ public class Player : MonoBehaviour
     }
 
 
-    void OnCollisionStay2D(Collision2D other)
-    {
-
-        //if (other.transform.tag == "RopeObject" && (haveRope == false))
-        //{
-        //    AcquireRope();
-        //    GameObject.Destroy(other.gameObject);
-        //}
-
-        //	if (other.transform.tag == "Ground") {
-
-        //	var otherCollider = (BoxCollider2D)other.collider;
-        //	if (transform.position.y - 0.5f >= other.transform.position.y + otherCollider.center.y + other.transform.localScale.y*otherCollider.size.y/2)
-        //			if ( -0.01f <= accelation_y && accelation_y <= 0.01f )
-        //				isGrounded = true;
-        //	}
-    }
-
-    void OnCollisionExit2D(Collision2D other)
-    {
-        //	if (other.transform.tag == "Ground") {
-        //			isGrounded = false;
-        //		}
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         ConditionalLootRope(other);
 
-        if (other.gameObject.tag == "Ground")
-        {
+        //if (other.gameObject.tag == "Ground")
+        //{
 
-            walkVelocity = walkVelocity_init;
-            if (Input.GetKey(KeyCode.LeftControl))
-            { //&& isGrounded ){
-                walkVelocity = walkVelocity_init * jumpBoost_init;
-                rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
-                //isGrounded = false;
-            }
-        }
+        //    walkVelocity = walkVelocity_init;
+        //    if (Input.GetKey(KeyCode.LeftControl))
+        //    { //&& isGrounded ){
+        //        walkVelocity = walkVelocity_init * jumpBoost_init;
+        //        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
+        //        //isGrounded = false;
+        //    }
+        //}
 
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
+        
+    }
 
-        //if (other.transform.tag == "RopeObject" && (haveRope == false))
-        //{
-        //    AcquireRope();
-        //    GameObject.Destroy(other.gameObject);
-        //}
-
-        if (other.gameObject.tag == "Ground")
-        {
-
-            walkVelocity = walkVelocity_init;
-            if (Input.GetKey(KeyCode.LeftControl))
-            { //&& isGrounded ){
-                walkVelocity = walkVelocity_init * jumpBoost_init;
-                rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
-                //isGrounded = false;
-
-                audio.PlayOneShot(jumpAudioClip);
-            }
-        }
-
+    void OnCollisionStay2D(Collision2D other)
+    {
+        
     }
 
     public void resetRope()
@@ -255,7 +282,7 @@ public class Player : MonoBehaviour
         collider2D.enabled = false;
         isClimbing = true;
         rigidbody2D.gravityScale = 0.0f;
-        GameObject.Find("PlayerMesh").GetComponent<Animator>().SetInteger("state", 2);
+        _playerMesh.GetComponent<Animator>().SetInteger("state", 2);
         transform.rotation = Quaternion.Euler(0, 90, 0);
     }
 
@@ -264,7 +291,7 @@ public class Player : MonoBehaviour
         isClimbing = false;
         collider2D.enabled = true;
         rigidbody2D.gravityScale = gravityScale_init;
-        GameObject.Find("PlayerMesh").GetComponent<Animator>().SetInteger("state", 0);
+        _playerMesh.GetComponent<Animator>().SetInteger("state", 0);
     }
 
     void Back(bool left)
