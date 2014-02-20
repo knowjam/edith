@@ -99,29 +99,28 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (transform.FindChild("TopSensor").GetComponent<SimpleTriggerSensor>().triggered)
-        {
-            if (!GetComponent<BoxCollider2D>().isTrigger)
-            {
-                GetComponent<BoxCollider2D>().enabled = false;
-                transform.FindChild("TopSensor").GetComponent<SimpleTriggerSensor>().enabled = false;
-                GetComponents<BoxCollider2D>()[1].enabled = false;
-            }
+        //if (!touchGround)
+        //{
+        //    if (!GetComponent<BoxCollider2D>().isTrigger)
+        //    {
+        //        GetComponent<BoxCollider2D>().enabled = false;
+        //        transform.FindChild("TopSensor").GetComponent<SimpleTriggerSensor>().enabled = false;
+        //        GetComponents<BoxCollider2D>()[1].enabled = false;
+        //    }
 
-            transform.FindChild("TopSensor").GetComponent<SimpleTriggerSensor>().triggered = false;
-        }
+        //    transform.FindChild("TopSensor").GetComponent<SimpleTriggerSensor>().triggered = false;
+        //}
+        //else
+        //{
+        //    if (!GetComponent<BoxCollider2D>().isTrigger)
+        //    {
+        //        GetComponent<BoxCollider2D>().enabled = true;
+        //        transform.FindChild("TopSensor").GetComponent<SimpleTriggerSensor>().enabled = true;
+        //        GetComponents<BoxCollider2D>()[1].enabled = true;
+        //    }
 
-        if (transform.FindChild("BottomSensor").GetComponent<SimpleTriggerSensor>().triggered)
-        {
-            if (!GetComponent<BoxCollider2D>().isTrigger)
-            {
-                GetComponent<BoxCollider2D>().enabled = true;
-                transform.FindChild("TopSensor").GetComponent<SimpleTriggerSensor>().enabled = true;
-                GetComponents<BoxCollider2D>()[1].enabled = true;
-            }
-
-            transform.FindChild("BottomSensor").GetComponent<SimpleTriggerSensor>().triggered = false;
-        }
+        //    transform.FindChild("BottomSensor").GetComponent<SimpleTriggerSensor>().triggered = false;
+        //}
 
         //	accelation_y = (transform.rigidbody2D.velocity.y - last_velocity_y)/Time.deltaTime;
         //	last_velocity_y = transform.rigidbody2D.velocity.y;
