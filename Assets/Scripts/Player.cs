@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 
+[RequireComponent(typeof(BoxCollider2D))]
 public class Player : MonoBehaviour
 {
     public float jumpVelocity = 20.0f;
@@ -21,10 +22,10 @@ public class Player : MonoBehaviour
     public GUIStyle killScoreStyle;
     public int killCount;
     public bool transferedObject; // 다른 레벨에서 넘어온 플레이어 (진짜 플레이어)
-    public LayerMask collisionMask;
+    public LayerMask groundLayerMask;
     private GameObject _playerSnakeMesh;
     private GameObject _playerMesh;
-    private bool touchGround;
+    private RaycastHit2D touchGround;
 
     [SerializeField]
     private bool _haveRope; // 현재 로프를 가지고 있는 지 판단한다.
@@ -45,6 +46,8 @@ public class Player : MonoBehaviour
         Snake,              // 뱀채찍으로 쓰기로 결정됨
     }
     public PlayerMode playerMode = PlayerMode.NotDetermined;
+
+    BoxCollider2D boxCollider;
 
     // Use this for initialization
     void Start()
@@ -72,6 +75,8 @@ public class Player : MonoBehaviour
         {
             _playerSnakeMesh.SetActive(false);
         }
+
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
 
@@ -85,47 +90,44 @@ public class Player : MonoBehaviour
         var origin = p + new Vector3(c.x, c.y - s.y / 2);
 
         Debug.DrawRay(origin, Vector3.down);
-        touchGround = Physics2D.Raycast(origin, Vector3.down, 0.5f, collisionMask);
+        touchGround = Physics2D.Raycast(origin, Vector3.down, 0.5f, groundLayerMask);
+        
         if (touchGround)
         {
             walkVelocity = walkVelocity_init;
             if (Input.GetKey(KeyCode.LeftControl))
-            { //&& isGrounded ){
+            {
                 walkVelocity = walkVelocity_init * jumpBoost_init;
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
-                //isGrounded = false;
 
                 audio.PlayOneShot(jumpAudioClip);
             }
+
+            if (touchGround.collider.gameObject.GetComponent<MovePlatform>())
+            {
+                //boxCollider.sharedMaterial.friction = 1.0f;
+                //collider2D.enabled = false;
+                //collider2D.enabled = true;
+            }
+            else
+            {
+                //boxCollider.sharedMaterial.friction = 0.0f;
+                //collider2D.enabled = false;
+                //collider2D.enabled = true;
+            }
+
+            boxCollider.sharedMaterial.friction = 1.0f;
+            collider2D.enabled = false;
+            collider2D.enabled = true;
+            
+        }
+        else
+        {
+            boxCollider.sharedMaterial.friction = 0.0f;
+            collider2D.enabled = false;
+            collider2D.enabled = true;
         }
 
-        //if (!touchGround)
-        //{
-        //    if (!GetComponent<BoxCollider2D>().isTrigger)
-        //    {
-        //        GetComponent<BoxCollider2D>().enabled = false;
-        //        transform.FindChild("TopSensor").GetComponent<SimpleTriggerSensor>().enabled = false;
-        //        GetComponents<BoxCollider2D>()[1].enabled = false;
-        //    }
-
-        //    transform.FindChild("TopSensor").GetComponent<SimpleTriggerSensor>().triggered = false;
-        //}
-        //else
-        //{
-        //    if (!GetComponent<BoxCollider2D>().isTrigger)
-        //    {
-        //        GetComponent<BoxCollider2D>().enabled = true;
-        //        transform.FindChild("TopSensor").GetComponent<SimpleTriggerSensor>().enabled = true;
-        //        GetComponents<BoxCollider2D>()[1].enabled = true;
-        //    }
-
-        //    transform.FindChild("BottomSensor").GetComponent<SimpleTriggerSensor>().triggered = false;
-        //}
-
-        //	accelation_y = (transform.rigidbody2D.velocity.y - last_velocity_y)/Time.deltaTime;
-        //	last_velocity_y = transform.rigidbody2D.velocity.y;
-
-        //	rigidbody2D.velocity = new Vector2( 0.0f , rigidbody2D.velocity.y );
         if (isKnockBack <= knockBackFrame)
         {
             isKnockBack++;
