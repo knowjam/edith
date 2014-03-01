@@ -37,8 +37,20 @@ public class Player : MonoBehaviour
         }
     }
 
+    [SerializeField]
+    private bool _haveBlanket; // 현재 보자기를 가지고 있는 지 판단한다.
+    public bool haveBlanket
+    {
+        get
+        {
+            return _haveBlanket && playerMode == PlayerMode.Rope;
+        }
+    }
+
     public Texture2D ropeGuiTex;    // 밧줄 아이템을 가지고 있을 때
     public Texture2D snakeGuiTex;   // 뱀채찍을 가지고 있을 때
+    public Texture2D ghostGuiTex;   // 보자기를 가지고 있을 때
+
     public enum PlayerMode
     {
         NotDetermined,      // 플레이어가 밧줄로 쓸지 뱀채찍으로 쓸지 결정하지 않음
@@ -60,8 +72,6 @@ public class Player : MonoBehaviour
 
         isClimbing = false;
         rigidbody2D.gravityScale = gravityScale_init;
-
-        _haveRope = false;
 
         isKnockBack = knockBackFrame + 1;
         walkVelocity = walkVelocity_init;
@@ -224,18 +234,7 @@ public class Player : MonoBehaviour
     {
         ConditionalLootRope(other);
 
-        //if (other.gameObject.tag == "Ground")
-        //{
-
-        //    walkVelocity = walkVelocity_init;
-        //    if (Input.GetKey(KeyCode.LeftControl))
-        //    { //&& isGrounded ){
-        //        walkVelocity = walkVelocity_init * jumpBoost_init;
-        //        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
-        //        //isGrounded = false;
-        //    }
-        //}
-
+        ConditionalLootGhost(other);
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -266,6 +265,20 @@ public class Player : MonoBehaviour
         changeAllRopesToSnakes();
     }
 
+    void getGhost()
+    {
+        if (playerMode != PlayerMode.NotDetermined)
+        {
+            throw new Exception("getGhost() method should be called only when the player mode is not determined.");
+        }
+
+        playerMode = PlayerMode.Snake;
+        ++killCount;
+
+        changeAllRopesToSnakes();
+        changeAllGhostsToGhosts();
+    }
+
     void changeAllRopesToSnakes()
     {
         foreach (var r in GameObject.FindGameObjectsWithTag("RopeObject"))
@@ -276,6 +289,10 @@ public class Player : MonoBehaviour
 
             r.GetComponent<BoxCollider2D>().isTrigger = false;
         }
+    }
+
+    void changeAllGhostsToGhosts()
+    {
     }
 
     void setClimb()
@@ -316,6 +333,10 @@ public class Player : MonoBehaviour
         {
             GUI.DrawTexture(new Rect(0, 0, 100, 100), ropeGuiTex);
         }
+        else if (haveBlanket)
+        {
+            GUI.DrawTexture(new Rect(100, 0, 100, 100), ghostGuiTex);
+        }
         else if (playerMode == PlayerMode.Snake)
         {
             GUI.DrawTexture(new Rect(0, 0, 100, 100), snakeGuiTex);
@@ -330,6 +351,19 @@ public class Player : MonoBehaviour
             && playerMode != PlayerMode.Snake)
         {
             _haveRope = true;
+            playerMode = PlayerMode.Rope;
+
+            GameObject.Destroy(other.gameObject);
+        }
+    }
+
+    void ConditionalLootGhost(Collider2D other)
+    {
+        if (other.transform.tag == "GhostObject"
+            && haveBlanket == false
+            && playerMode != PlayerMode.Snake)
+        {
+            _haveBlanket = true;
             playerMode = PlayerMode.Rope;
 
             GameObject.Destroy(other.gameObject);
