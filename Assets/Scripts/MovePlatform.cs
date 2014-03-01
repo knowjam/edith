@@ -10,10 +10,13 @@ public class MovePlatform : MonoBehaviour
     private float startPosition;
     private bool curMoveLeft;
     Vector3 initialPosition;
+    public bool changeDirectionOnEnds;
 
     // Use this for initialization
     void Start()
     {
+        ConditionalFlipDirection();
+
         initialPosition = transform.position;
 
         if (leftRight)
@@ -38,6 +41,7 @@ public class MovePlatform : MonoBehaviour
                 {
                     curMoveLeft = false;
                     transform.rigidbody2D.velocity = new Vector2(moveVelocity, 0.0f);
+                    ConditionalFlipDirection();
                 }
             }
             else
@@ -47,6 +51,7 @@ public class MovePlatform : MonoBehaviour
                 if (startPosition > transform.position.y)
                 {
                     curMoveLeft = false;
+                    ConditionalFlipDirection();
                 }
             }
         }
@@ -57,6 +62,7 @@ public class MovePlatform : MonoBehaviour
                 if (startPosition + moveAmount < transform.position.x)
                 {
                     curMoveLeft = true;
+                    ConditionalFlipDirection();
                     transform.rigidbody2D.velocity = new Vector2(-moveVelocity, 0.0f);
                 }
             }
@@ -67,6 +73,7 @@ public class MovePlatform : MonoBehaviour
                 if (startPosition + moveAmount < transform.position.y)
                 {
                     curMoveLeft = true;
+                    ConditionalFlipDirection();
                 }
             }
         }
@@ -85,5 +92,13 @@ public class MovePlatform : MonoBehaviour
         Gizmos.DrawLine(beginPoint, beginPoint + (leftRight ? new Vector3(arrowSize, -arrowSize, 0) : new Vector3(arrowSize, arrowSize, 0)));
         Gizmos.DrawLine(endPoint, endPoint + (leftRight ? new Vector3(-arrowSize, arrowSize, 0) : new Vector3(-arrowSize, -arrowSize, 0)));
         Gizmos.DrawLine(endPoint, endPoint + (leftRight ? new Vector3(-arrowSize, -arrowSize, 0) : new Vector3(arrowSize, -arrowSize, 0)));
+    }
+
+    void ConditionalFlipDirection()
+    {
+        if (changeDirectionOnEnds && leftRight)
+        {
+            transform.Rotate(0, 180, 0);
+        }
     }
 }

@@ -23,9 +23,10 @@ public class Player : MonoBehaviour
     public int killCount;
     public bool transferedObject; // 다른 레벨에서 넘어온 플레이어 (진짜 플레이어)
     public LayerMask groundLayerMask;
-    private GameObject _playerSnakeMesh;
-    private GameObject _playerMesh;
     private RaycastHit2D touchGround;
+    private GameObject _playerMesh;
+    private GameObject _blanketObject;
+    private bool blanketed;
 
     [SerializeField]
     private bool _haveRope; // 현재 로프를 가지고 있는 지 판단한다.
@@ -77,14 +78,9 @@ public class Player : MonoBehaviour
         walkVelocity = walkVelocity_init;
         //	accelation_y = 0.0f;
         //	last_velocity_y = transform.rigidbody2D.velocity.y;
-
         _playerMesh = GameObject.Find("PlayerMesh");
-
-        _playerSnakeMesh = GameObject.Find("PlayerSnakeMesh");
-        if (_playerSnakeMesh)
-        {
-            _playerSnakeMesh.SetActive(false);
-        }
+        _blanketObject = GameObject.Find("BlanketObject");
+        _blanketObject.SetActive(false);
 
         boxCollider = GetComponent<BoxCollider2D>();
     }
@@ -111,6 +107,8 @@ public class Player : MonoBehaviour
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
 
                 audio.PlayOneShot(jumpAudioClip);
+
+                ConditionalRevertFromBlanket();
             }
 
             if (touchGround.collider.gameObject.GetComponent<MovePlatform>())
@@ -154,6 +152,8 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 180, 0);
 
             _playerMesh.GetComponent<Animator>().SetInteger("state", 1);
+
+            ConditionalRevertFromBlanket();
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
@@ -162,17 +162,20 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 0);
 
             _playerMesh.GetComponent<Animator>().SetInteger("state", 1);
+
+            ConditionalRevertFromBlanket();
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            //_playerMesh.GetComponent<Animator>().SetInteger("state", 3);
+            _playerMesh.GetComponent<Animator>().SetInteger("state", 3);
 
-            _playerMesh.SetActive(false);
-            _playerSnakeMesh.SetActive(true);
-            
             //audio.PlayOneShot(attackAudioClip);
         }
-        else
+        else if (Input.GetKey(KeyCode.S))
+        {
+            ConditionalChangeToBlanket();
+        }
+        else if (blanketed == false)
         {
             _playerMesh.SetActive(true);
             _playerMesh.GetComponent<Animator>().SetInteger("state", 0);
@@ -189,10 +192,23 @@ public class Player : MonoBehaviour
 
     }
 
-    public void SwitchToNormalMesh()
+    private void ConditionalRevertFromBlanket()
     {
-        _playerMesh.SetActive(true);
-        _playerSnakeMesh.SetActive(false);
+        if (blanketed)
+        {
+            blanketed = false;
+            _playerMesh.SetActive(true);
+        }
+    }
+
+    private void ConditionalChangeToBlanket()
+    {
+        if (_haveBlanket)
+        {
+            _playerMesh.SetActive(false);
+            blanketed = true;
+            _haveBlanket = false;
+        }
     }
 
     void OnLevelWasLoaded()
