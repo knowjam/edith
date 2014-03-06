@@ -36,7 +36,19 @@ public class Bear : MonoBehaviour
 
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.SendMessage("Back", dir);
+            other.gameObject.SendMessage("Back", new KnockbackInfo { pusher = this, left = dir });
+        }
+    }
+
+    void Back(KnockbackInfo info)
+    {
+        if (info.left)
+        {
+            transform.rigidbody2D.velocity = new Vector2(-50, transform.rigidbody2D.velocity.y);
+        }
+        else
+        {
+            transform.rigidbody2D.velocity = new Vector2(+50, transform.rigidbody2D.velocity.y);
         }
     }
 }

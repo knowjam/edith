@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
         Snake,              // 뱀채찍으로 쓰기로 결정됨
     }
     public PlayerMode playerMode = PlayerMode.NotDetermined;
+    public bool haveGhostEffect;
 
     BoxCollider2D boxCollider;
 
@@ -171,7 +172,7 @@ public class Player : MonoBehaviour
 
             //audio.PlayOneShot(attackAudioClip);
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKeyUp(KeyCode.S))
         {
             ConditionalChangeToBlanket();
         }
@@ -194,20 +195,30 @@ public class Player : MonoBehaviour
 
     private void ConditionalRevertFromBlanket()
     {
+        // 이미 보자기 형태로 변신한 상태라면 원래 모습으로 돌아온다.
         if (blanketed)
         {
             blanketed = false;
+            _blanketObject.SetActive(false);
             _playerMesh.SetActive(true);
+            gameObject.layer = LayerMask.NameToLayer("Player");
         }
     }
 
     private void ConditionalChangeToBlanket()
     {
+        // 보자기 아이템을 습득했다면 보자기 형태로 변신한다.
         if (_haveBlanket)
         {
             _playerMesh.SetActive(false);
             blanketed = true;
+            _blanketObject.SetActive(true);
             _haveBlanket = false;
+            gameObject.layer = LayerMask.NameToLayer("PlayerInvincible");
+        }
+        else
+        {
+            ConditionalRevertFromBlanket();
         }
     }
 
@@ -291,6 +302,8 @@ public class Player : MonoBehaviour
         playerMode = PlayerMode.Snake;
         ++killCount;
 
+        haveGhostEffect = true;
+
         changeAllRopesToSnakes();
         changeAllGhostsToGhosts();
     }
@@ -328,10 +341,17 @@ public class Player : MonoBehaviour
         _playerMesh.GetComponent<Animator>().SetInteger("state", 0);
     }
 
-    void Back(bool left)
+    void Back(KnockbackInfo info)
     {
+        if (haveGhostEffect)
+        {
+            info.pusher.SendMessage("Back", new KnockbackInfo { pusher = this, left = info.pusher.gameObject.transform.position.x < transform.position.x });
+            Destroy(info.pusher.gameObject, 2.0f);
+            return;
+        }
+
         isKnockBack = 0;
-        if (left)
+        if (info.left)
         {
             transform.rigidbody2D.velocity = new Vector2(-jumpVelocity, transform.rigidbody2D.velocity.y);
         }

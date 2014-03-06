@@ -81,8 +81,12 @@ public class MovePlatform : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        var beginPoint = Application.isPlaying ? initialPosition : transform.position; // GetComponentInChildren<Renderer>().bounds.center;
-        beginPoint.z = 0;
+        var beginPoint = Application.isPlaying ? initialPosition : transform.position;
+        if (leftRight)
+        {
+            beginPoint.y += 0.2f; // 오브젝트에 묻히지 않을 정도로 위로 밀기
+        }
+        beginPoint.z -= 0.1f; // 오브젝트에 묻히지 않을 정도로 카메라쪽으로 당기자
         var endPoint = beginPoint + (leftRight ? new Vector3(moveAmount, 0, 0) : new Vector3(0, moveAmount, 0));
 
         Gizmos.color = Color.yellow;
