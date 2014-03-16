@@ -5,15 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
   - enabled: 1
     path: Assets/Scenes/Stage1.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Stage2.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Team.unity
-  - enabled: 0
-    path: Assets/Scenes/Tests/Ending.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Tests/Cogwheel.unity
+  - enabled: 1
+    path: Assets/Scenes/Tests/Ghost.unity
