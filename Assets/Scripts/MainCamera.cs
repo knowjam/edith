@@ -4,6 +4,8 @@ using System.Collections;
 public class MainCamera : MonoBehaviour {
 
 	public bool leftToRightScroll;
+    public Transform[] backgrounds;
+
 
 	// Use this for initialization
 	void Start () {
@@ -17,10 +19,22 @@ public class MainCamera : MonoBehaviour {
 		{
 			float x = GameObject.Find("Player").transform.position.x;
 
+            var oldPosition = transform.position;
+
 			transform.position = new Vector3(
 				x,
 				transform.position.y,
 				transform.position.z);
+
+            var xDiff = oldPosition.x - transform.position.x;
+
+            foreach (var bg in backgrounds)
+            {
+                // bg.transform.position.z의 값은 20~30까지임
+                var normalizedZ = (bg.transform.position.z - 20) / 10; // 이건 0~1
+                var xDiffRatio = normalizedZ;
+                bg.transform.Translate(- xDiff * xDiffRatio * 0.1f, 0, 0);
+            }
 		}
 		else
 		{

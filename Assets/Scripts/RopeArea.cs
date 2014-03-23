@@ -7,6 +7,22 @@ public class RopeArea : MonoBehaviour
     public bool isRope = false;
     private Player playerObject;
 
+    bool ropeKeyPressed
+    {
+        get
+        {
+            return Input.GetKeyDown(KeyCode.R) || RopeButton.ropeButtonHit;
+        }
+    }
+
+    bool climbKeyPressed
+    {
+        get
+        {
+            return Input.GetKeyDown(KeyCode.UpArrow) || VirtualJoystickRegion.VJRnormals.y > 0.3f;
+        }
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -22,7 +38,7 @@ public class RopeArea : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (!isRope && other.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.R))
+        if (!isRope && other.gameObject.tag == "Player" && ropeKeyPressed)
         {
             if (playerObject.haveRope)
             {
@@ -36,7 +52,7 @@ public class RopeArea : MonoBehaviour
         }
 
 
-        if (isRope && other.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.UpArrow))
+        if (isRope && other.gameObject.tag == "Player" && climbKeyPressed)
         {
             other.gameObject.transform.position = new Vector3(transform.position.x, other.transform.position.y + 0.1f, 8.0f);
             other.gameObject.SendMessage("Climb");

@@ -28,6 +28,41 @@ public class Player : MonoBehaviour
     private GameObject _blanketObject;
     private bool blanketed;
 
+    static readonly float joystickThreshold = 0.3f;
+
+    bool moveLeft
+    {
+        get
+        {
+            return Input.GetKey(KeyCode.LeftArrow) || VirtualJoystickRegion.VJRnormals.x < -joystickThreshold;
+        }
+    }
+
+    bool moveRight
+    {
+        get
+        {
+            return Input.GetKey(KeyCode.RightArrow) || VirtualJoystickRegion.VJRnormals.x > joystickThreshold;
+        }
+    }
+
+    bool moveStopped
+    {
+        get
+        {
+            return (!moveLeft && !moveRight && (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow)))
+                || (Application.platform == RuntimePlatform.Android && Mathf.Abs(VirtualJoystickRegion.VJRnormals.x) < joystickThreshold);
+        }
+    }
+
+    bool jump
+    {
+        get
+        {
+            return Input.GetKey(KeyCode.LeftControl) || JumpButton.jumpButtonHit;
+        }
+    }
+
     [SerializeField]
     private bool _haveRope; // 현재 로프를 가지고 있는 지 판단한다.
     public bool haveRope
@@ -102,7 +137,7 @@ public class Player : MonoBehaviour
         if (touchGround)
         {
             walkVelocity = walkVelocity_init;
-            if (Input.GetKey(KeyCode.LeftControl))
+            if (jump)
             {
                 walkVelocity = walkVelocity_init * jumpBoost_init;
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
@@ -146,7 +181,7 @@ public class Player : MonoBehaviour
         if (isClimbing == true)
             return;
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (moveLeft)
         {
             rigidbody2D.velocity = new Vector2(-walkVelocity, rigidbody2D.velocity.y);
 
@@ -156,7 +191,7 @@ public class Player : MonoBehaviour
 
             ConditionalRevertFromBlanket();
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (moveRight)
         {
             rigidbody2D.velocity = new Vector2(walkVelocity, rigidbody2D.velocity.y);
 
@@ -182,15 +217,10 @@ public class Player : MonoBehaviour
             _playerMesh.GetComponent<Animator>().SetInteger("state", 0);
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        if (moveStopped)
         {
             rigidbody2D.velocity = new Vector2(0.0f, rigidbody2D.velocity.y);
         }
-        else if (Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            rigidbody2D.velocity = new Vector2(0.0f, rigidbody2D.velocity.y);
-        }
-
     }
 
     private void ConditionalRevertFromBlanket()
@@ -240,17 +270,33 @@ public class Player : MonoBehaviour
         }
     }
 
+    bool climbUpKeyPressed
+    {
+        get
+        {
+            return Input.GetKeyDown(KeyCode.UpArrow) || VirtualJoystickRegion.VJRnormals.y > 0.3f;
+        }
+    }
+
+    bool climbDownKeyPressed
+    {
+        get
+        {
+            return Input.GetKeyDown(KeyCode.DownArrow) || VirtualJoystickRegion.VJRnormals.y < -0.3f;
+        }
+    }
+
     void Climb()
     {
         if (isClimbing == false)
             setClimb();
 
         rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (climbUpKeyPressed)
         {
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, walkVelocity);
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
+        else if (climbDownKeyPressed)
         {
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, -walkVelocity);
         }
