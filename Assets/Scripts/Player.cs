@@ -25,8 +25,10 @@ public class Player : MonoBehaviour
     public LayerMask groundLayerMask;
     private RaycastHit2D touchGround;
     private GameObject _playerMesh;
-    private GameObject _blanketObject;
+    public GameObject blanketObject;
     private bool blanketed;
+    public float itemAttackRange = 5;
+    public LayerMask itemAttackLayerMask;
 
     static readonly float joystickThreshold = 0.3f;
 
@@ -115,8 +117,6 @@ public class Player : MonoBehaviour
         //	accelation_y = 0.0f;
         //	last_velocity_y = transform.rigidbody2D.velocity.y;
         _playerMesh = GameObject.Find("PlayerMesh");
-        _blanketObject = GameObject.Find("BlanketObject");
-        _blanketObject.SetActive(false);
 
         boxCollider = GetComponent<BoxCollider2D>();
     }
@@ -229,7 +229,7 @@ public class Player : MonoBehaviour
         if (blanketed)
         {
             blanketed = false;
-            _blanketObject.SetActive(false);
+            blanketObject.SetActive(false);
             _playerMesh.SetActive(true);
             gameObject.layer = LayerMask.NameToLayer("Player");
         }
@@ -242,7 +242,7 @@ public class Player : MonoBehaviour
         {
             _playerMesh.SetActive(false);
             blanketed = true;
-            _blanketObject.SetActive(true);
+            blanketObject.SetActive(true);
             _haveBlanket = false;
             gameObject.layer = LayerMask.NameToLayer("PlayerInvincible");
         }
@@ -450,5 +450,19 @@ public class Player : MonoBehaviour
 
             GameObject.Destroy(other.gameObject);
         }
+    }
+
+    public Vector3 itemAttackEndpoint { get { return transform.position + transform.right * itemAttackRange; } }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(transform.position, itemAttackEndpoint);
+    }
+
+    public GameObject GetItemAttackRayCheckResult()
+    {
+        var result = Physics2D.Raycast(transform.position, transform.right, itemAttackRange, itemAttackLayerMask);
+        return result.collider ? result.collider.gameObject : null;
     }
 }

@@ -11,13 +11,27 @@ public class Bear : MonoBehaviour
 
     void Update()
     {
-        if (GameObject.Find("Player").GetComponent<Player>().playerMode == Player.PlayerMode.Snake
-            && Input.GetKey(KeyCode.A)
-            && (GameObject.Find("Player").transform.position - transform.position).magnitude < 3.0f) // 곰과 같이 큰 오브젝트와 개와 같이 작은 오브젝트가 공존하고 있으므로 이런 식으로 고정값으로 체크하는 것은 말이 안된다. 수정하자~
-        {
-            ++GameObject.Find("Player").GetComponent<Player>().killCount;
+        GameObject playerObject = GameObject.Find("Player");
 
-            GameObject.Destroy(gameObject);
+        if (playerObject == null)
+        {
+            Debug.LogError("Player 객체를 찾을 수 없습니다");
+            return;
+        }
+
+        var player = playerObject.GetComponent<Player>();
+
+        if (Input.GetKey(KeyCode.A)
+            && player.playerMode == Player.PlayerMode.Snake)
+        {
+            var frontObject = player.GetItemAttackRayCheckResult();
+
+            if (frontObject == gameObject)
+            {
+                ++player.killCount;
+
+                GameObject.Destroy(gameObject);
+            }
         }
     }
 
