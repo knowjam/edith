@@ -201,9 +201,10 @@ public class Player : MonoBehaviour
 
             ConditionalRevertFromBlanket();
         }
-        else if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKeyDown(KeyCode.A))
         {
-            _playerMesh.GetComponent<Animator>().SetInteger("state", 3);
+            _playerMesh.GetComponent<Animator>().SetInteger("state", 4);
+            transform.Find("PlayerAttackRope").GetComponent<Animator>().SetTrigger("Attack");
 
             //audio.PlayOneShot(attackAudioClip);
         }
