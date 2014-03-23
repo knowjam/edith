@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: f6b0248cf13ade9498ca56b542577ab1
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - magpiePrefab: {fileID: 100000, guid: 83a2ccff72229784d8911ab33954d307, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

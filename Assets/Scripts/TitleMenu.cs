@@ -41,6 +41,11 @@ public class TitleMenu : MonoBehaviour
             {
                 Application.LoadLevel("Cogwheel");
             }
+
+            if (GUI.Button(new Rect(Screen.width / 5 + 140 * 3, Screen.height / 2 + 40 + 50 * 2, 130, 50), "Magpie", BtnSkin.button))
+            {
+                Application.LoadLevel("Magpie");
+            }
         }
     }
 }

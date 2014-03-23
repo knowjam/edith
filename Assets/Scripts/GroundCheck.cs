@@ -10,6 +10,11 @@ public class GroundCheck : MonoBehaviour
     void Update()
     {
         var p = GameObject.Find("PlayerFoot");
+        if (!p)
+        {
+            return;
+        }
+   
         var playerY = p.transform.position.y;
         var groundY = transform.position.y + transform.localScale.y/2;
         var groundSkin = -0.05;
