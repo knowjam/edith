@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
     {
         get
         {
-            return Input.GetKey(KeyCode.LeftControl) || JumpButton.jumpButtonHit;
+            return Input.GetKeyDown(KeyCode.LeftControl) || JumpButton.jumpButtonHit;
         }
     }
 
@@ -203,9 +203,15 @@ public class Player : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
-            _playerMesh.GetComponent<Animator>().SetInteger("state", 4);
-            transform.Find("PlayerAttackRope").GetComponent<Animator>().SetTrigger("Attack");
-
+            if (playerMode == PlayerMode.Snake)
+            {
+                _playerMesh.GetComponent<Animator>().SetInteger("state", 4);
+                transform.Find("PlayerAttackRope").GetComponent<Animator>().SetTrigger("Attack");
+            }
+            else
+            {
+                _playerMesh.GetComponent<Animator>().SetInteger("state", 3);
+            }
             //audio.PlayOneShot(attackAudioClip);
         }
         else if (Input.GetKeyUp(KeyCode.S))

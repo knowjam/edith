@@ -15,7 +15,7 @@ public class GlobalGui : MonoBehaviour
 
     void OnGUI()
     {
-        if (GUI.Button(new Rect(0, 0, 100, 50), "Exit", BtnSkin.button))
+        if (GUI.Button(new Rect(Screen.width - 100, 0, 100, 50), "Exit", BtnSkin.button))
         {
             Application.LoadLevel("MainMenu");
         }
