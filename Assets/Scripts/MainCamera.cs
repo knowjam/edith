@@ -28,12 +28,18 @@ public class MainCamera : MonoBehaviour {
 
             var xDiff = oldPosition.x - transform.position.x;
 
-            foreach (var bg in backgrounds)
+            if (backgrounds != null)
             {
-                // bg.transform.position.z의 값은 20~30까지임
-                var normalizedZ = (bg.transform.position.z - 20) / 10; // 이건 0~1
-                var xDiffRatio = normalizedZ;
-                bg.transform.Translate(- xDiff * xDiffRatio * 0.1f, 0, 0);
+                foreach (var bg in backgrounds)
+                {
+                    if (bg)
+                    {
+                        // bg.transform.position.z의 값은 20~30까지임
+                        var normalizedZ = (bg.transform.position.z - 20) / 10; // 이건 0~1
+                        var xDiffRatio = normalizedZ;
+                        bg.transform.Translate(-xDiff * xDiffRatio * 0.1f, 0, 0, Space.World);
+                    }
+                }
             }
 		}
 		else

@@ -113,6 +113,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BtnSkin: {fileID: 11400000, guid: 8d7691810c43e4f428c3f2a969c82356, type: 2}
+  testStages:
+  - Stage2
+  - Ghost
+  - Cogwheel
+  - Magpie
+  - BearAttack
+  - Stage3
+  - Stage4
 --- !u!1 &261471973
 GameObject:
   m_ObjectHideFlags: 0

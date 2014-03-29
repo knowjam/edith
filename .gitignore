@@ -8,3 +8,5 @@
 *.sln
 edith-csharp.v11.suo
 edith.apk
+Thumbs.db
+*.suo

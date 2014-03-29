@@ -18,7 +18,6 @@ public class MagpieAnim : MonoBehaviour
         var positionDiff = transform.position - prevPosition;
 
         prevPosition = transform.position;
-        animator.SetFloat("MoveSpeed", positionDiff.magnitude * Time.deltaTime * 100);
-
+        animator.SetFloat("MoveSpeed", positionDiff.magnitude / Time.deltaTime * 100);
     }
 }

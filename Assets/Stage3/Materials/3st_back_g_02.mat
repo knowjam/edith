@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 1st_back_10
-  m_Shader: {fileID: 10750, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: 3st_back_g_02
+  m_Shader: {fileID: 4800000, guid: b0e254ce8e2a93f4fb95886ec3d6fa5e, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,10 +17,21 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 829e5ecc1a3b8ca4aa56740efad0f2fa, type: 3}
+          m_Texture: {fileID: 2800000, guid: 181ea651752b3aa40a84e5db2b4bce07, type: 3}
           m_Scale: {x: 10, y: 1}
           m_Offset: {x: 0, y: 0}
-    m_Floats: {}
+      data:
+        first:
+          name: _AltTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 58589a19ffec4f6428f8dbd2be90be50, type: 3}
+          m_Scale: {x: 10, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _Blend
+        second: 0
     m_Colors:
       data:
         first:

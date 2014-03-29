@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 1st_back_11
+  m_Name: Stage 4 Moon
   m_Shader: {fileID: 4800000, guid: 4cde01556c3afd84fb4bfd0ea33b152d, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
@@ -36,4 +36,4 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: .425281137, g: .821147442, b: .838235259, a: 1}

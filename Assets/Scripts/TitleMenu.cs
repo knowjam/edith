@@ -4,6 +4,7 @@ using System.Collections;
 public class TitleMenu : MonoBehaviour
 {
     public GUISkin BtnSkin;
+    public string[] testStages;
 
     void Start()
     {
@@ -27,29 +28,14 @@ public class TitleMenu : MonoBehaviour
 
         if (Debug.isDebugBuild)
         {
-            if (GUI.Button(new Rect(Screen.width / 5 + 140 * 0, Screen.height / 2 + 40 + 50 * 2, 130, 50), "Stage 2", BtnSkin.button))
+            int i = 0;
+            foreach (var s in testStages)
             {
-                Application.LoadLevel("Stage2");
-            }
-
-            if (GUI.Button(new Rect(Screen.width / 5 + 140 * 1, Screen.height / 2 + 40 + 50 * 2, 130, 50), "Ghost", BtnSkin.button))
-            {
-                Application.LoadLevel("Ghost");
-            }
-
-            if (GUI.Button(new Rect(Screen.width / 5 + 140 * 2, Screen.height / 2 + 40 + 50 * 2, 130, 50), "Cogwheel", BtnSkin.button))
-            {
-                Application.LoadLevel("Cogwheel");
-            }
-
-            if (GUI.Button(new Rect(Screen.width / 5 + 140 * 3, Screen.height / 2 + 40 + 50 * 2, 130, 50), "Magpie", BtnSkin.button))
-            {
-                Application.LoadLevel("Magpie");
-            }
-
-            if (GUI.Button(new Rect(Screen.width / 5 + 140 * 4, Screen.height / 2 + 40 + 50 * 2, 130, 50), "BearAttack", BtnSkin.button))
-            {
-                Application.LoadLevel("BearAttack");
+                if (GUI.Button(new Rect(140 * (i%5), Screen.height / 2 + 40 + 50 * (2 + i/5), 130, 50), s, BtnSkin.button))
+                {
+                    Application.LoadLevel(s);
+                }
+                ++i;
             }
         }
     }

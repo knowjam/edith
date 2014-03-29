@@ -57,7 +57,7 @@ BlendTree:
   m_BlendParameterY: MoveSpeed
   m_MinThreshold: 0
   m_MaxThreshold: .0199999996
-  m_UseAutomaticThresholds: 0
+  m_UseAutomaticThresholds: 1
   m_BlendType: 0
 --- !u!206 &20668691
 BlendTree:
@@ -135,21 +135,14 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
+      first: {fileID: 0}
+      second: []
+    data:
       first: {fileID: 110213235}
       second: []
     data:
       first: {fileID: 110250194}
       second: []
-    data:
-      first: {fileID: 0}
-      second: []
-    data:
-      first: {fileID: 0}
-      second: []
-    data:
-      first: {fileID: 0}
-      second:
-      - {fileID: 110100000}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
