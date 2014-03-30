@@ -19,5 +19,10 @@ public class GlobalGui : MonoBehaviour
         {
             Application.LoadLevel("MainMenu");
         }
+
+        if (GUI.Button(new Rect(Screen.width - 200, 0, 100, 50), "Retry", BtnSkin.button))
+        {
+            Application.LoadLevel(Application.loadedLevel);
+        }
     }
 }

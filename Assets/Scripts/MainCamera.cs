@@ -18,12 +18,13 @@ public class MainCamera : MonoBehaviour {
 		if (leftToRightScroll)
 		{
 			float x = GameObject.Find("Player").transform.position.x;
+            float y = GameObject.Find("Player").transform.position.y;
 
             var oldPosition = transform.position;
 
 			transform.position = new Vector3(
 				x,
-				transform.position.y,
+				y,
 				transform.position.z);
 
             var xDiff = oldPosition.x - transform.position.x;

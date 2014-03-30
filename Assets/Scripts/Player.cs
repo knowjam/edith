@@ -125,6 +125,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.y < -100)
+        {
+            Application.LoadLevel(Application.loadedLevel);
+        }
+
         var p = transform.position;
         var s = GetComponent<BoxCollider2D>().size;
         var c = GetComponent<BoxCollider2D>().center;

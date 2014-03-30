@@ -8,13 +8,28 @@ public class MovePlatform : MonoBehaviour
     public float moveAmount;
     public float moveVelocity;
     private float startPosition;
-    private bool curMoveLeft;
+    public bool curMoveLeft;
     Vector3 initialPosition;
     public bool changeDirectionOnEnds;
+    public bool moveOnce;
+    public bool oppositeDirection;
+    public GameObject[] eventHandlers;
 
     // Use this for initialization
     void Start()
     {
+        if (!GetComponent<Rigidbody2D>().isKinematic)
+        {
+            Debug.LogError("MovePlatform이 달려 있는 오브젝트의 RigidBody 키네마틱 속성은 true로 설정해야 됩니다.");
+            return;
+        }
+
+        //if (moveAmount < 0)
+        //{
+        //    Debug.LogError("Move Amount값은 음수가 되면 안됩니다.");
+        //    return;
+        //}
+
         ConditionalFlipDirection();
 
         initialPosition = transform.position;
@@ -48,7 +63,12 @@ public class MovePlatform : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y - Time.deltaTime * moveVelocity, transform.position.z);
 
-                if (startPosition > transform.position.y)
+                if (startPosition > transform.position.y && !oppositeDirection)
+                {
+                    curMoveLeft = false;
+                    ConditionalFlipDirection();
+                }
+                else if (startPosition < transform.position.y && oppositeDirection)
                 {
                     curMoveLeft = false;
                     ConditionalFlipDirection();
@@ -70,10 +90,28 @@ public class MovePlatform : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y + Time.deltaTime * moveVelocity, transform.position.z);
 
-                if (startPosition + moveAmount < transform.position.y)
+                if (startPosition + moveAmount < transform.position.y && !oppositeDirection)
                 {
                     curMoveLeft = true;
                     ConditionalFlipDirection();
+                }
+                else if (startPosition + moveAmount > transform.position.y && oppositeDirection)
+                {
+                    curMoveLeft = true;
+                    ConditionalFlipDirection();
+
+                    if (moveOnce)
+                    {
+                        moveVelocity = 0;
+
+                        foreach (var eh in eventHandlers)
+                        {
+                            if (eh)
+                            {
+                                eh.SendMessage("OnMoveOnceCompleted");
+                            }
+                        }
+                    }
                 }
             }
         }
