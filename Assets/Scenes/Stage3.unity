@@ -451,11 +451,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: e984b70236eb82949aeda346858df213, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -6.30722141
+      value: -6.52577162
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e984b70236eb82949aeda346858df213, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.20251822
+      value: 3.264961
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e984b70236eb82949aeda346858df213, type: 2}
       propertyPath: m_LocalPosition.z
@@ -488,6 +488,10 @@ Prefab:
     - target: {fileID: 400000, guid: e984b70236eb82949aeda346858df213, type: 2}
       propertyPath: m_LocalScale.z
       value: .712551773
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: e984b70236eb82949aeda346858df213, type: 2}
+      propertyPath: speed
+      value: -50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e984b70236eb82949aeda346858df213, type: 2}
@@ -835,7 +839,7 @@ Transform:
   m_PrefabInternal: {fileID: 117739286}
   m_GameObject: {fileID: 179415694}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.30722141, y: 3.20251822, z: 10}
+  m_LocalPosition: {x: -6.52577162, y: 3.264961, z: 10}
   m_LocalScale: {x: .712551773, y: .712551773, z: .712551773}
   m_Children:
   - {fileID: 703528094}
@@ -852,7 +856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 006bd97f6b7e8284fbfa30eaf0d6b771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: -50
 --- !u!60 &179415697
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1638,7 +1642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 006bd97f6b7e8284fbfa30eaf0d6b771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 0
 --- !u!60 &339854568
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -6026,6 +6030,10 @@ Prefab:
     - target: {fileID: 400000, guid: e984b70236eb82949aeda346858df213, type: 2}
       propertyPath: m_LocalScale.z
       value: .575757265
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: e984b70236eb82949aeda346858df213, type: 2}
+      propertyPath: speed
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e984b70236eb82949aeda346858df213, type: 2}
@@ -13594,7 +13602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 006bd97f6b7e8284fbfa30eaf0d6b771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 0
 --- !u!60 &1251676321
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -17997,6 +18005,10 @@ Prefab:
     - target: {fileID: 400000, guid: e984b70236eb82949aeda346858df213, type: 2}
       propertyPath: m_LocalScale.z
       value: .906511247
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: e984b70236eb82949aeda346858df213, type: 2}
+      propertyPath: speed
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e984b70236eb82949aeda346858df213, type: 2}
