@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Remover : MonoBehaviour
+public class RotationReverseSwitch : MonoBehaviour
 {
-    public GameObject ObjectToBeRemoved;
+    public GameObject ObjectToBeReverseRotated;
     private bool pushed;
     public Texture2D notPushedTex;
     public Texture2D pushedTex;
@@ -16,10 +16,8 @@ public class Remover : MonoBehaviour
         {
             pushed = true;
 
-            GameObject.Destroy(ObjectToBeRemoved);
+            ObjectToBeReverseRotated.GetComponent<CogwheelRotate>().speed *= -1;
         }
-
-        //GameObject.Destroy(gameObject);
     }
 
     void OnTriggerExit2D(Collider2D other)
