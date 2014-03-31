@@ -5,7 +5,8 @@ public class MainCamera : MonoBehaviour {
 
 	public bool leftToRightScroll;
     public Transform[] backgrounds;
-
+    public float yOffset;
+    public bool yFollow;
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +25,7 @@ public class MainCamera : MonoBehaviour {
 
 			transform.position = new Vector3(
 				x,
-				y,
+                yFollow ? y + yOffset : transform.position.y,
 				transform.position.z);
 
             var xDiff = oldPosition.x - transform.position.x;
