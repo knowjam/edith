@@ -43,4 +43,18 @@ public class Moon : MonoBehaviour
         
         renderer.material.SetTextureOffset("_Mask", new Vector2(offsetX, 0.1f));
     }
+
+    void LateUpdate()
+    {
+        var playerPositionX = GameObject.Find("Player").transform.position.x;
+        var startPositionX = GameObject.Find("StartPosition").transform.position.x;
+        var finishPositionX = GameObject.Find("FinishPosition").transform.position.x;
+
+        var xRatio = (playerPositionX - startPositionX) / (finishPositionX - startPositionX);
+
+        var pos = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * (1 - xRatio), 3.0f * Screen.height / 4.0f, 0));
+        pos.z = 29;
+
+        transform.position = pos;
+    }
 }
