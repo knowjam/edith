@@ -98,6 +98,8 @@ public class Player : MonoBehaviour
     public bool haveGhostEffect;
 
     BoxCollider2D boxCollider;
+    public float deathHeight = -100;
+    public CheckpointArea checkpointArea;
 
     // Use this for initialization
     void Start()
@@ -124,9 +126,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y < -100)
+        if (transform.position.y < deathHeight)
         {
-            Application.LoadLevel(Application.loadedLevel);
+            RestartAtCheckpoint();
         }
 
         var p = transform.position;
@@ -231,6 +233,27 @@ public class Player : MonoBehaviour
         if (moveStopped)
         {
             rigidbody2D.velocity = new Vector2(0.0f, rigidbody2D.velocity.y);
+        }
+    }
+
+    private void RestartAtCheckpoint()
+    {
+        if (checkpointArea)
+        {
+            // 플레이어의 아이템 습득 상태를 리셋하고
+            // 체크포인트 위치로 순간이동 시켜주고
+            // 레벨이 바뀌어도 사라지지 않도록 보존하자!
+            transferedObject = true;
+            gameObject.transform.position = checkpointArea.transform.position;
+            _haveRope = false;
+            _haveBlanket = false;
+            GameObject.DontDestroyOnLoad(gameObject);
+
+            Application.LoadLevel(Application.loadedLevel);
+        }
+        else
+        {
+            Application.LoadLevel(Application.loadedLevel);
         }
     }
 
@@ -429,11 +452,13 @@ public class Player : MonoBehaviour
         {
             GUI.DrawTexture(new Rect(0, 0, 100, 100), ropeGuiTex);
         }
-        else if (haveBlanket)
+        
+        if (haveBlanket)
         {
             GUI.DrawTexture(new Rect(100, 0, 100, 100), ghostGuiTex);
         }
-        else if (playerMode == PlayerMode.Snake)
+
+        if (playerMode == PlayerMode.Snake)
         {
             GUI.DrawTexture(new Rect(0, 0, 100, 100), snakeGuiTex);
             GUI.Label(new Rect(0, 0, 100, 100), Convert.ToString(killCount), killScoreStyle);
@@ -478,5 +503,10 @@ public class Player : MonoBehaviour
     {
         var result = Physics2D.Raycast(transform.position, transform.right, itemAttackRange, itemAttackLayerMask);
         return result.collider ? result.collider.gameObject : null;
+    }
+
+    internal void SetCheckpoint(CheckpointArea checkpointArea)
+    {
+        this.checkpointArea = checkpointArea;
     }
 }
