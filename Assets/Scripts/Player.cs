@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     public float jumpBoost_init = 1.5f;
     public float gravityScale_init = 10.0f;
     public int knockBackFrame = 50;
-    private bool isGrounded;
     private bool isClimbing;
     private bool gravitiyScale;
     private int isKnockBack;
@@ -317,9 +316,12 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        ConditionalLootRope(other);
+        if (touchGround)
+        {
+            ConditionalLootRope(other);
 
-        ConditionalLootGhost(other);
+            ConditionalLootGhost(other);
+        }
     }
 
     void OnTriggerStay2D(Collider2D other)
