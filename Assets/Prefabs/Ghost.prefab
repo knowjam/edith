@@ -9,7 +9,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 61: {fileID: 6100000}
-  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: GhostObject
@@ -42,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: -.415441692, y: .200000003, z: 10}
+  m_LocalPosition: {x: 3.85262585, y: .0922682285, z: 10}
   m_LocalScale: {x: 6, y: 6, z: 6}
   m_Children:
   - {fileID: 400002}
@@ -111,17 +110,6 @@ Animator:
   m_ApplyRootMotion: 0
   m_AnimatePhysics: 0
   m_HasTransformHierarchy: 1
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3914b8d12c58fa4aa75666a6a78985c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -214,7 +214,7 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110200000}
   m_DstState: {fileID: 110227981}
-  m_TransitionDuration: .0749999955
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 6
@@ -380,7 +380,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: attack
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: f8d309fdb99783f47bdb2636ff065b69, type: 2}
@@ -422,10 +422,6 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110218874}
-      second:
-      - {fileID: 110122552}
-    data:
       first: {fileID: 0}
       second:
       - {fileID: 110101735}
@@ -451,6 +447,10 @@ StateMachine:
       second:
       - {fileID: 110134103}
       - {fileID: 110161233}
+    data:
+      first: {fileID: 110218874}
+      second:
+      - {fileID: 110122552}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
