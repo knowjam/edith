@@ -128,6 +128,12 @@ public class Player : MonoBehaviour
     {
         if (transform.position.y < deathHeight)
         {
+            if (Time.timeSinceLevelLoad < 1)
+            {
+                Debug.LogError("시작하자마자 너무 빨리 캐릭터가 사망한 것으로 판정되고 있다. Death Height값이 잘못 설정되어 있거나 플레이어 시작 위치가 너무 낮은 것은 아닌지 확인 필요하다.");
+            }
+
+            Debug.Log("높이(Y좌표) 값을 통한 사망 판정됨. 마지막 체크포인트에서 다시 시작...");
             RestartAtCheckpoint();
         }
 
@@ -211,6 +217,7 @@ public class Player : MonoBehaviour
         {
             if (playerMode == PlayerMode.Snake)
             {
+                Debug.Log("'A' key pressed.");
                 _playerMesh.GetComponent<Animator>().SetInteger("state", 4);
                 transform.Find("PlayerAttackRope").GetComponent<Animator>().SetTrigger("Attack");
             }
@@ -226,8 +233,11 @@ public class Player : MonoBehaviour
         }
         else if (blanketed == false)
         {
-            _playerMesh.SetActive(true);
-            _playerMesh.GetComponent<Animator>().SetInteger("state", 0);
+            if (_playerMesh)
+            {
+                _playerMesh.SetActive(true);
+                _playerMesh.GetComponent<Animator>().SetInteger("state", 0);
+            }
         }
 
         if (moveStopped)

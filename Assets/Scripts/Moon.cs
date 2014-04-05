@@ -46,6 +46,11 @@ public class Moon : MonoBehaviour
 
     void LateUpdate()
     {
+        if (!GameObject.Find("Player"))
+        {
+            return;
+        }
+
         var playerPositionX = GameObject.Find("Player").transform.position.x;
         var startPositionX = GameObject.Find("StartPosition").transform.position.x;
         var finishPositionX = GameObject.Find("FinishPosition").transform.position.x;

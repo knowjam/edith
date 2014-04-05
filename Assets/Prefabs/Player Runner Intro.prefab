@@ -28,6 +28,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400024}
   - 95: {fileID: 9500000}
+  - 114: {fileID: 11400002}
   m_Layer: 8
   m_Name: PlayerRunnerMesh
   m_TagString: Untagged
@@ -647,7 +648,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -52.5312233, y: -1.31857526, z: 0}
+  m_LocalPosition: {x: -54.2826004, y: -2.58973718, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400024}
@@ -818,14 +819,28 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7b67ff4d84579e4fabbbd160878a2f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skin: {fileID: 0}
-  text: []
-  buttonText: 
+  skin: {fileID: 11400000, guid: 8d7691810c43e4f428c3f2a969c82356, type: 2}
+  text:
+  - Hm...
+  - What the...?
+  buttonText: Next
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 659bcde12783437438298e0b393ef18d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemAttackRangeObject: {fileID: 0}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

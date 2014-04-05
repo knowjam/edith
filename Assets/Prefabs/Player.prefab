@@ -254,6 +254,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400032}
   - 95: {fileID: 9500000}
+  - 114: {fileID: 11400006}
   m_Layer: 9
   m_Name: PlayerMesh
   m_TagString: Untagged
@@ -645,7 +646,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.53858328, y: .594666243, z: 10}
+  m_LocalPosition: {x: 92.341629, y: -2.09655666, z: 8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400062}
@@ -1156,7 +1157,7 @@ Renderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100080}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -1266,7 +1267,7 @@ MeshCollider:
   m_GameObject: {fileID: 100080}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 0
@@ -1419,7 +1420,7 @@ TrailRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100080}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_LightmapIndex: 255
@@ -1551,7 +1552,7 @@ MonoBehaviour:
   ghostGuiTex: {fileID: 2800000, guid: 99183aecfc2cd62489d006f447441394, type: 3}
   playerMode: 0
   haveGhostEffect: 0
-  deathHeight: -1
+  deathHeight: -30
   checkpointArea: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
@@ -1577,6 +1578,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggered: 0
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 659bcde12783437438298e0b393ef18d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemAttackRangeObject: {fileID: 100080}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

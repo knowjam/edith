@@ -15,6 +15,11 @@ public class MainCamera : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        
+        if (!GameObject.Find("Player"))
+        {
+            return;
+        }
 
 		if (leftToRightScroll)
 		{

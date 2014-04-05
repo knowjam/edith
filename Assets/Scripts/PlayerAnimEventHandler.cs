@@ -7,17 +7,27 @@ public class PlayerAnimEventHandler : MonoBehaviour
 
     void OnAnimIdle()
     {
-        itemAttackRangeObject.GetComponent<TrailRenderer>().enabled = false;
+        if (itemAttackRangeObject)
+        {
+            itemAttackRangeObject.GetComponent<TrailRenderer>().enabled = false;
+        }
     }
 
     void OnAnimEventAttackHitStart()
     {
-        itemAttackRangeObject.GetComponent<TrailRenderer>().enabled = true;
+        if (itemAttackRangeObject)
+        {
+            itemAttackRangeObject.GetComponent<TrailRenderer>().enabled = true;
+        }
     }
 
     void OnAnimEventAttackHitTime()
     {
         var player = GameObject.Find("Player").GetComponent<Player>();
+        if (!player)
+        {
+            return;
+        }
 
         if (player.playerMode == Player.PlayerMode.NotDetermined)
         {
