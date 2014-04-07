@@ -26,7 +26,7 @@ public class TitleMenu : MonoBehaviour
             Application.LoadLevel("Team");
         }
 
-        if (Debug.isDebugBuild)
+        //if (Debug.isDebugBuild)
         {
             int i = 0;
             foreach (var s in testStages)
