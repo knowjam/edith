@@ -246,7 +246,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void RestartAtCheckpoint()
+    public void RestartAtCheckpoint()
     {
         if (checkpointArea)
         {

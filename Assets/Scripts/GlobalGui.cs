@@ -22,7 +22,7 @@ public class GlobalGui : MonoBehaviour
 
         if (GUI.Button(new Rect(Screen.width - 200, 0, 100, 50), "Retry", BtnSkin.button))
         {
-            Application.LoadLevel(Application.loadedLevel);
+            GameObject.Find("Player").GetComponent<Player>().RestartAtCheckpoint();
         }
     }
 }
