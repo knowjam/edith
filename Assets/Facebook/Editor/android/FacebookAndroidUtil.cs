@@ -70,7 +70,7 @@ namespace UnityEditor.FacebookEditor
             var arguments = @"""keytool -storepass {0} -keypass {1} -exportcert -alias {2} -keystore {3} | openssl sha1 -binary | openssl base64""";
             if (Application.platform == RuntimePlatform.WindowsEditor)
             {
-                proc.StartInfo.FileName = "cmd";
+                proc.StartInfo.FileName = @"c:\windows\system32\cmd.exe";
                 arguments = @"/C " + arguments;
             }
             else
@@ -121,7 +121,7 @@ namespace UnityEditor.FacebookEditor
             var proc = new Process();
             if (Application.platform == RuntimePlatform.WindowsEditor)
             {
-                proc.StartInfo.FileName = "cmd";
+                proc.StartInfo.FileName = @"c:\windows\system32\cmd.exe";
                 proc.StartInfo.Arguments = @"/C" + command;
             }
             else

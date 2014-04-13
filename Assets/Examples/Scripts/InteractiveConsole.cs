@@ -2,7 +2,8 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using Facebook.MiniJSON;
+//using System.Linq;
 
 public sealed class InteractiveConsole : MonoBehaviour
 {
@@ -32,7 +33,8 @@ public sealed class InteractiveConsole : MonoBehaviour
 
     private void CallFBLogin()
     {
-        FB.Login("email,publish_actions", LoginCallback);
+        //FB.Login("email,publish_actions", LoginCallback);
+        FB.Login("email", LoginCallback);
     }
 
     void LoginCallback(FBResult result)
@@ -45,8 +47,18 @@ public sealed class InteractiveConsole : MonoBehaviour
         }
         else
         {
-            lastResponse = "Login was successful!";
+            lastResponse = "Login was successful! UserId=" + FB.UserId;
+
+
+            FB.API("/me?fields=name,id,first_name,friends.limit(100).fields(first_name,id)", Facebook.HttpMethod.GET, UserCallback);
         }
+    }
+
+    private void UserCallback(FBResult result)
+    {
+        var dict = Json.Deserialize(result.Text) as IDictionary;
+        lastResponse = "Login was successful! UserId=" + FB.UserId;
+        lastResponse += "\nName: " + dict["name"].ToString();
     }
 
     private void CallFBLogout()

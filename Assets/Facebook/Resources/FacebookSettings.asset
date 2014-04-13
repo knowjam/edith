@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedAppIndex: 0
   appIds:
-  - 210888462429176
+  - 538607296259610
   appLabels:
-  - Catch All
+  - Edith
   cookie: 1
   logging: 1
   status: 1
