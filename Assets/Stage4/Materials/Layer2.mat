@@ -18,14 +18,14 @@ Material:
           name: _MainTex
         second:
           m_Texture: {fileID: 2800000, guid: 0d2a80672d635ae4490e756e39d62b0b, type: 3}
-          m_Scale: {x: 10, y: 1}
+          m_Scale: {x: 10, y: 2}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _AltTex
         second:
           m_Texture: {fileID: 2800000, guid: b7b85451dd0ad0143ab5b0f0240f2993, type: 3}
-          m_Scale: {x: 10, y: 1}
+          m_Scale: {x: 10, y: 2}
           m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
