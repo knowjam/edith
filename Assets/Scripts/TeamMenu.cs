@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TeamMenu : MonoBehaviour
+public class TeamMenu : EdMonoBehaviour
 {
     public GUISkin BtnSkin;
 
@@ -17,7 +17,7 @@ public class TeamMenu : MonoBehaviour
     {
         if (GUI.Button(new Rect(Screen.width / 2 - 110/2, Screen.height - 100, 110, 50), "Back", BtnSkin.button))
         {
-            Application.LoadLevel("MainMenu");
+            LoadLevelWithSceneFade("MainMenu");
         }
     }
 }

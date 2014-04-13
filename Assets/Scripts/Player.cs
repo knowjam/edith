@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class Player : MonoBehaviour
+public class Player : EdMonoBehaviour
 {
     public float jumpVelocity = 20.0f;
     public float walkVelocity_init = 3.0f;
@@ -126,12 +126,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 밧줄 타고 올라가게 함
-        if (isClimbing)
-        {
-            transform.localPosition = new Vector2(transform.localPosition.x, transform.localPosition.y + walkVelocity * Time.deltaTime);
-        }
-        
         if (transform.position.y < deathHeight)
         {
             if (Time.timeSinceLevelLoad < 1)
@@ -265,11 +259,11 @@ public class Player : MonoBehaviour
             _haveBlanket = false;
             GameObject.DontDestroyOnLoad(gameObject);
 
-            Application.LoadLevel(Application.loadedLevel);
+            LoadLevelWithSceneFade(Application.loadedLevelName);
         }
         else
         {
-            Application.LoadLevel(Application.loadedLevel);
+            LoadLevelWithSceneFade(Application.loadedLevelName);
         }
     }
 
@@ -336,17 +330,15 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Climb(GameObject ropeObject)
+    void Climb()
     {
         if (isClimbing == false)
-            setClimb(ropeObject);
+            setClimb();
 
         rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
         if (climbUpKeyPressed)
         {
-            //rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, walkVelocity);
-
-            transform.localPosition = new Vector2(transform.localPosition.x, transform.localPosition.y + walkVelocity * Time.deltaTime);
+            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, walkVelocity);
         }
         else if (climbDownKeyPressed)
         {
@@ -425,20 +417,13 @@ public class Player : MonoBehaviour
     {
     }
 
-    void setClimb(GameObject ropeObject)
+    void setClimb()
     {
         collider2D.enabled = false;
         isClimbing = true;
         rigidbody2D.gravityScale = 0.0f;
         _playerMesh.GetComponent<Animator>().SetInteger("state", 2);
         transform.rotation = Quaternion.Euler(0, 90, 0);
-        gameObject.transform.parent = ropeObject.transform;
-
-        foreach (var c2d in GetComponents<Collider2D>())
-        {
-            c2d.isTrigger = true;
-        }
-
     }
 
     void resetClimb()
@@ -447,10 +432,6 @@ public class Player : MonoBehaviour
         collider2D.enabled = true;
         rigidbody2D.gravityScale = gravityScale_init;
         _playerMesh.GetComponent<Animator>().SetInteger("state", 0);
-
-        transform.parent = null;
-
-        collider2D.isTrigger = false;
     }
 
     void Back(KnockbackInfo info)

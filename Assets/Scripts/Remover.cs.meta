@@ -2,7 +2,10 @@ fileFormatVersion: 2
 guid: 8a0182974bbe79e4e9f01dbfbcc02964
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - ObjectToBeRemoved: {instanceID: 0}
+  - notPushedTex: {fileID: 2800000, guid: f04658134854efc43b755db699317e2f, type: 3}
+  - pushedTex: {fileID: 2800000, guid: 61eb2d1820f4b5c4a8514485c6099a02, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

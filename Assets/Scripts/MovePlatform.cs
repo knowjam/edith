@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-//[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class MovePlatform : MonoBehaviour
 {
     public bool leftRight = true; // true면 좌우이동, false면 상하이동
