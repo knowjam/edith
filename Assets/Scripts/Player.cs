@@ -126,6 +126,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // 밧줄 타고 올라가게 함
+        if (isClimbing)
+        {
+            transform.localPosition = new Vector2(transform.localPosition.x, transform.localPosition.y + walkVelocity * Time.deltaTime);
+        }
+        
         if (transform.position.y < deathHeight)
         {
             if (Time.timeSinceLevelLoad < 1)
@@ -330,15 +336,17 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Climb()
+    void Climb(GameObject ropeObject)
     {
         if (isClimbing == false)
-            setClimb();
+            setClimb(ropeObject);
 
         rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
         if (climbUpKeyPressed)
         {
-            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, walkVelocity);
+            //rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, walkVelocity);
+
+            transform.localPosition = new Vector2(transform.localPosition.x, transform.localPosition.y + walkVelocity * Time.deltaTime);
         }
         else if (climbDownKeyPressed)
         {
@@ -417,13 +425,20 @@ public class Player : MonoBehaviour
     {
     }
 
-    void setClimb()
+    void setClimb(GameObject ropeObject)
     {
         collider2D.enabled = false;
         isClimbing = true;
         rigidbody2D.gravityScale = 0.0f;
         _playerMesh.GetComponent<Animator>().SetInteger("state", 2);
         transform.rotation = Quaternion.Euler(0, 90, 0);
+        gameObject.transform.parent = ropeObject.transform;
+
+        foreach (var c2d in GetComponents<Collider2D>())
+        {
+            c2d.isTrigger = true;
+        }
+
     }
 
     void resetClimb()
@@ -432,6 +447,10 @@ public class Player : MonoBehaviour
         collider2D.enabled = true;
         rigidbody2D.gravityScale = gravityScale_init;
         _playerMesh.GetComponent<Animator>().SetInteger("state", 0);
+
+        transform.parent = null;
+
+        collider2D.isTrigger = false;
     }
 
     void Back(KnockbackInfo info)

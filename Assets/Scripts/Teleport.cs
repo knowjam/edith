@@ -4,6 +4,8 @@ using System;
 
 public class Teleport : MonoBehaviour
 {
+    public string nextStageName;
+
     void Start()
     {
     }
@@ -16,17 +18,17 @@ public class Teleport : MonoBehaviour
     {
         if (other.transform.tag == "Player")
         {
-            if (Application.loadedLevelName == "Stage2")
+            if (Application.loadedLevelName == "Stage3")
             {
                 Application.LoadLevel("MainMenu");
             }
-            else if (Application.loadedLevelName == "Stage1")
+            else if (Application.loadedLevelName == "Stage1" || Application.loadedLevelName == "Stage2")
             {
                 var player = GameObject.Find("Player");
                 player.GetComponent<Player>().transferedObject = true;
                 UnityEngine.Object.DontDestroyOnLoad(player);
-    
-                Application.LoadLevel("Stage2");
+
+                Application.LoadLevel(nextStageName);
             }
             else
             {

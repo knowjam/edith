@@ -48,6 +48,9 @@ public class RopeArea : MonoBehaviour
 
                 var obj = Instantiate(playerObject.climbRopePrefab, transform.position, Quaternion.identity) as GameObject;
                 obj.transform.localScale = new Vector2(obj.transform.localScale.x, ((BoxCollider2D)gameObject.collider2D).size.y);
+
+                Debug.Log("로프 생성됨");
+                obj.transform.parent = transform;
             }
         }
 
@@ -55,7 +58,7 @@ public class RopeArea : MonoBehaviour
         if (isRope && other.gameObject.tag == "Player" && climbKeyPressed)
         {
             other.gameObject.transform.position = new Vector3(transform.position.x, other.transform.position.y + 0.1f, 8.0f);
-            other.gameObject.SendMessage("Climb");
+            other.gameObject.SendMessage("Climb", gameObject);
         }
     }
 
