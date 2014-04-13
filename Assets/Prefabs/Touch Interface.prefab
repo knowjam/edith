@@ -14,7 +14,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0
@@ -26,7 +26,7 @@ GameObject:
   - 131: {fileID: 13100000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: RopeButton
+  m_Name: GhostButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,6 +65,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400008}
+  - 131: {fileID: 13100004}
+  - 114: {fileID: 11400006}
+  m_Layer: 0
+  m_Name: RopeButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -77,6 +94,7 @@ Transform:
   m_Children:
   - {fileID: 400006}
   - {fileID: 400004}
+  - {fileID: 400008}
   - {fileID: 400002}
   m_Father: {fileID: 0}
 --- !u!4 &400002
@@ -86,7 +104,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .95321846, y: .5, z: 0}
+  m_LocalPosition: {x: .953217983, y: .5, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
@@ -112,6 +130,17 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
+--- !u!4 &400008
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100008}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .95321846, y: .5, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400000}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -120,7 +149,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cddc245abb197d4428d00f0ee64f1f55, type: 3}
+  m_Script: {fileID: 11500000, guid: 16fc0b54f416c9b4aae315352232f31b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11400002
@@ -149,6 +178,17 @@ MonoBehaviour:
   inactiveColor: {r: .595588207, g: .47734642, b: .47734642, a: 1}
   joystick2D: {fileID: 2800000, guid: 8971e43a6cf20fe4f89dbf534f035213, type: 3}
   background2D: {fileID: 2800000, guid: 8424e54816388334b8d4f9334db23ae5, type: 3}
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cddc245abb197d4428d00f0ee64f1f55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!131 &13100000
 GUITexture:
   m_ObjectHideFlags: 1
@@ -156,11 +196,11 @@ GUITexture:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_Enabled: 0
-  m_Texture: {fileID: 2800000, guid: eb6d0fe1ce6af7a469b60b6669613097, type: 3}
+  m_Texture: {fileID: 2800000, guid: c8ded259393270f46b08aba45ec4239f, type: 3}
   m_Color: {r: .5, g: .5, b: .5, a: .5}
   m_PixelInset:
     serializedVersion: 2
-    x: -128
+    x: -256
     y: -128
     width: 128
     height: 128
@@ -181,6 +221,25 @@ GUITexture:
     serializedVersion: 2
     x: -64
     y: -29
+    width: 128
+    height: 128
+  m_LeftBorder: 0
+  m_RightBorder: 0
+  m_TopBorder: 0
+  m_BottomBorder: 0
+--- !u!131 &13100004
+GUITexture:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100008}
+  m_Enabled: 0
+  m_Texture: {fileID: 2800000, guid: eb6d0fe1ce6af7a469b60b6669613097, type: 3}
+  m_Color: {r: .5, g: .5, b: .5, a: .5}
+  m_PixelInset:
+    serializedVersion: 2
+    x: -128
+    y: -128
     width: 128
     height: 128
   m_LeftBorder: 0

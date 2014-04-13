@@ -64,6 +64,14 @@ public class Player : EdMonoBehaviour
         }
     }
 
+    bool ghost
+    {
+        get
+        {
+            return Input.GetKeyDown(KeyCode.S) || GhostButton.ghostButtonHit;
+        }
+    }
+
     [SerializeField]
     private bool _haveRope; // 현재 로프를 가지고 있는 지 판단한다.
     public bool haveRope
@@ -227,7 +235,7 @@ public class Player : EdMonoBehaviour
             }
             //audio.PlayOneShot(attackAudioClip);
         }
-        else if (Input.GetKeyUp(KeyCode.S))
+        else if (ghost)
         {
             ConditionalChangeToBlanket();
         }
@@ -292,7 +300,11 @@ public class Player : EdMonoBehaviour
         }
         else
         {
-            ConditionalRevertFromBlanket();
+            // 터치 인터페이스에서는 본 함수가 여러번 호출 될 수 있어서
+            // 다시 보자기 버튼을 눌렀다고 해서 보자기를 없애버리면
+            // 보자기 상태로 유지하는 것이 거의 불가능하다.
+
+            //ConditionalRevertFromBlanket();
         }
     }
 
