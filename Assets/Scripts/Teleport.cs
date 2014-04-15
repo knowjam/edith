@@ -18,6 +18,7 @@ public class Teleport : EdMonoBehaviour
     {
         var player = GameObject.Find("Player");
 
+        player.GetComponent<Player>().checkpointArea = null;
         player.GetComponent<Player>().lastCheckpointAreaPosition = Vector3.zero;
 
         if (other.transform.tag == "Player")

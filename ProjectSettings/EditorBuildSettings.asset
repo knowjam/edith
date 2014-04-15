@@ -17,13 +17,13 @@ EditorBuildSettings:
     path: Assets/Scenes/Stage3.unity
   - enabled: 1
     path: Assets/Scenes/Team.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Tests/Cogwheel.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Tests/Ghost.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Tests/Magpie.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Tests/BearAttack.unity
   - enabled: 0
     path: Assets/Examples/InteractiveConsole.unity

@@ -340,6 +340,8 @@ public class Player : EdMonoBehaviour
         if (transferedObject && lastCheckpointAreaPosition != Vector3.zero)
         {
             Debug.Log("플레이어를 마지막 체크포인트 위치로 텔레포트 시킴");
+            // 유령 상태에서 재시작한 경우 유령을 풀어 줘야 한다.
+            ConditionalRevertFromBlanket();
             transform.position = lastCheckpointAreaPosition;
         }
         else
@@ -347,11 +349,8 @@ public class Player : EdMonoBehaviour
             var sp = GameObject.Find("StartPosition");
             if (sp)
             {
-                if (!transferedObject)
-                {
-                    Debug.Log("플레이어를 StartPosition으로 텔레포트 시킴");
-                    transform.position = sp.transform.position;
-                }
+                Debug.Log("플레이어를 StartPosition으로 텔레포트 시킴");
+                transform.position = sp.transform.position;
             }
         }
         
