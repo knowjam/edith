@@ -5,7 +5,6 @@ using Facebook.MiniJSON;
 public class LoginStartup : EdMonoBehaviour
 {
     public GUISkin btnSkin;
-    private bool isInit = false;
     private bool isIniting = false;
     // Use this for initialization
     void Start()
@@ -16,7 +15,6 @@ public class LoginStartup : EdMonoBehaviour
     private void OnInitComplete()
     {
         Debug.Log("FB.Init completed: Is user logged in? " + FB.IsLoggedIn);
-        isInit = true;
         isIniting = false;
 
         FB.Login("email", LoginCallback);
@@ -50,7 +48,7 @@ public class LoginStartup : EdMonoBehaviour
         Debug.Log("\nEnglish Name: " + dict["name"].ToString());
         isIniting = false;
 
-        Player.name = dict["name"].ToString();
+        Player.playerName = dict["name"].ToString();
 
         LoadLevelWithSceneFade("MainMenu");
     }

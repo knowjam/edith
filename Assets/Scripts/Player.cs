@@ -5,7 +5,7 @@ using System;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Player : EdMonoBehaviour
 {
-    public static string name;
+    public static string playerName;
 
     public float jumpVelocity = 20.0f;
     public float walkVelocity_init = 3.0f;

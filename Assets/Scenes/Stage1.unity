@@ -502,7 +502,7 @@ GameObject:
   - 33: {fileID: 37860258}
   - 64: {fileID: 37860257}
   - 23: {fileID: 37860256}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Background Layer 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1232,6 +1232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c2ae51cbd09bc4eb50008a08e73cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passthroughByJump: 0
 --- !u!1 &107061324
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,6 +1696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c2ae51cbd09bc4eb50008a08e73cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passthroughByJump: 0
 --- !u!1 &140368639
 GameObject:
   m_ObjectHideFlags: 0
@@ -3321,6 +3323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c2ae51cbd09bc4eb50008a08e73cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passthroughByJump: 0
 --- !u!1 &186400440
 GameObject:
   m_ObjectHideFlags: 0
@@ -4912,7 +4915,7 @@ GameObject:
   - 33: {fileID: 372946649}
   - 64: {fileID: 372946648}
   - 23: {fileID: 372946647}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Background Layer 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5296,6 +5299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c2ae51cbd09bc4eb50008a08e73cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passthroughByJump: 0
 --- !u!1 &431673439
 GameObject:
   m_ObjectHideFlags: 0
@@ -6532,6 +6536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c2ae51cbd09bc4eb50008a08e73cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passthroughByJump: 0
 --- !u!1 &557498977
 GameObject:
   m_ObjectHideFlags: 0
@@ -7087,6 +7092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c2ae51cbd09bc4eb50008a08e73cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passthroughByJump: 0
 --- !u!1 &635039571
 GameObject:
   m_ObjectHideFlags: 0
@@ -9429,7 +9435,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 817288380}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Backgrounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10171,7 +10177,7 @@ GameObject:
   - 33: {fileID: 936099053}
   - 64: {fileID: 936099052}
   - 23: {fileID: 936099051}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Background Layer 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12470,6 +12476,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 328443d8a40432d44a8c6032cf4e42d1, type: 2}
+    - target: {fileID: 11400000, guid: 5cb2b09549ac43b41a3708ee3d0e4d08, type: 2}
+      propertyPath: passthroughByJump
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5cb2b09549ac43b41a3708ee3d0e4d08, type: 2}
   m_RootGameObject: {fileID: 1624362287}
@@ -13958,7 +13968,7 @@ GameObject:
   - 33: {fileID: 1303981718}
   - 64: {fileID: 1303981717}
   - 23: {fileID: 1303981716}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Background Layer 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14375,7 +14385,7 @@ GameObject:
   - 33: {fileID: 1347631920}
   - 64: {fileID: 1347631919}
   - 23: {fileID: 1347631918}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Background Layer 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14521,6 +14531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c2ae51cbd09bc4eb50008a08e73cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passthroughByJump: 0
 --- !u!1 &1382090708
 GameObject:
   m_ObjectHideFlags: 0
@@ -14629,7 +14640,7 @@ GameObject:
   - 33: {fileID: 1406984509}
   - 64: {fileID: 1406984508}
   - 23: {fileID: 1406984507}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Background Layer 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15330,7 +15341,7 @@ GameObject:
   - 33: {fileID: 1469421682}
   - 64: {fileID: 1469421681}
   - 23: {fileID: 1469421680}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Background Layer 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16162,7 +16173,7 @@ GameObject:
   - 33: {fileID: 1566825078}
   - 64: {fileID: 1566825077}
   - 23: {fileID: 1566825076}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Background Layer 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16235,7 +16246,7 @@ GameObject:
   - 33: {fileID: 1568092309}
   - 64: {fileID: 1568092308}
   - 23: {fileID: 1568092307}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Background Layer 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16934,6 +16945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c2ae51cbd09bc4eb50008a08e73cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passthroughByJump: 1
 --- !u!1 &1627867399
 GameObject:
   m_ObjectHideFlags: 0
@@ -19088,6 +19100,54 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: a5c2085a64392a646a30be4d66a4a140, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a5c2085a64392a646a30be4d66a4a140, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: a5c2085a64392a646a30be4d66a4a140, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: a5c2085a64392a646a30be4d66a4a140, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: a5c2085a64392a646a30be4d66a4a140, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: a5c2085a64392a646a30be4d66a4a140, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: a5c2085a64392a646a30be4d66a4a140, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: a5c2085a64392a646a30be4d66a4a140, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: a5c2085a64392a646a30be4d66a4a140, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: a5c2085a64392a646a30be4d66a4a140, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: a5c2085a64392a646a30be4d66a4a140, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 100022, guid: a5c2085a64392a646a30be4d66a4a140, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a5c2085a64392a646a30be4d66a4a140, type: 2}
   m_RootGameObject: {fileID: 817288379}
@@ -19593,7 +19653,7 @@ GameObject:
   - 33: {fileID: 1954816182}
   - 64: {fileID: 1954816181}
   - 23: {fileID: 1954816180}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Background Layer 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20302,6 +20362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c2ae51cbd09bc4eb50008a08e73cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passthroughByJump: 0
 --- !u!1001 &2074743017
 Prefab:
   m_ObjectHideFlags: 0
@@ -20369,7 +20430,7 @@ GameObject:
   - 33: {fileID: 2081989527}
   - 64: {fileID: 2081989526}
   - 23: {fileID: 2081989525}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Background Layer 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
