@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12001, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: BtnSkin
+  m_Name: BtnSkin (Old)
   m_EditorClassIdentifier: 
   m_Font: {fileID: 12800000, guid: a4eff1e2539c3804eaa8dd9048872318, type: 3}
   m_box:
@@ -74,13 +74,13 @@ MonoBehaviour:
   m_button:
     m_Name: button
     m_Normal:
-      m_Background: {fileID: 2800000, guid: d2be9fe42a362ff4b93a9bf2ddc4ceee, type: 3}
-      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
+      m_Background: {fileID: 2800000, guid: f3cbc5ab252b6da4893e0d0bb911adb0, type: 3}
+      m_TextColor: {r: .899999976, g: .899999976, b: .899999976, a: 1}
     m_Hover:
-      m_Background: {fileID: 2800000, guid: 0b33fff55cc636742be2d9e39fae50f8, type: 3}
+      m_Background: {fileID: 2800000, guid: 4fb76a45493da9c48a7b019acab91230, type: 3}
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_Active:
-      m_Background: {fileID: 2800000, guid: 6b84cfcad68a8094aa5c3758ff6b063f, type: 3}
+      m_Background: {fileID: 2800000, guid: 12984c19693f0ee4bbbdbe6558176b1d, type: 3}
       m_TextColor: {r: .899999976, g: .899999976, b: .899999976, a: 1}
     m_Focused:
       m_Background: {fileID: 0}
@@ -92,7 +92,7 @@ MonoBehaviour:
       m_Background: {fileID: 2800000, guid: 4fb76a45493da9c48a7b019acab91230, type: 3}
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_OnActive:
-      m_Background: {fileID: 2800000, guid: 6b84cfcad68a8094aa5c3758ff6b063f, type: 3}
+      m_Background: {fileID: 2800000, guid: 12984c19693f0ee4bbbdbe6558176b1d, type: 3}
       m_TextColor: {r: .899999976, g: .899999976, b: .899999976, a: 1}
     m_OnFocused:
       m_Background: {fileID: 0}
@@ -118,18 +118,18 @@ MonoBehaviour:
       m_Top: 0
       m_Bottom: 0
     m_Font: {fileID: 12800000, guid: a4eff1e2539c3804eaa8dd9048872318, type: 3}
-    m_FontSize: 40
+    m_FontSize: 20
     m_FontStyle: 0
     m_Alignment: 4
     m_WordWrap: 0
-    m_RichText: 0
+    m_RichText: 1
     m_TextClipping: 1
     m_ImagePosition: 0
     m_ContentOffset: {x: 0, y: 0}
     m_FixedWidth: 0
     m_FixedHeight: 0
-    m_StretchWidth: 1
-    m_StretchHeight: 1
+    m_StretchWidth: 0
+    m_StretchHeight: 0
   m_toggle:
     m_Name: toggle
     m_Normal:

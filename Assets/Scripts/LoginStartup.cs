@@ -76,7 +76,7 @@ public class LoginStartup : EdMonoBehaviour
 
         GUI.color = new Color(1, 1, 1, 1.0f - gg.fadeImageAlpha);
 
-        if (GUI.Button(new Rect(Screen.width/2.0f - Screen.width/3.0f/2, Screen.height/2.0f - Screen.height/6.0f/2, Screen.width/3.0f, Screen.height/6.0f), FB.IsLoggedIn ? "로그인 중..." : "페이스북으로 로그인", btnSkin.button))
+        if (GUI.Button(new Rect(Screen.width/2.0f - Screen.width/2.5f/2, Screen.height/2.0f - Screen.height/6.0f/2, Screen.width/2.5f, Screen.height/6.0f), FB.IsLoggedIn ? "로그인 중..." : "페이스북으로 로그인", btnSkin.button))
         {
             isIniting = true;
             FB.Init(OnInitComplete, OnHideUnity);

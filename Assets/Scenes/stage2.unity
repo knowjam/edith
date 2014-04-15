@@ -205,6 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c2ae51cbd09bc4eb50008a08e73cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passthroughByJump: 0
 --- !u!61 &4952664
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2018,7 +2019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9aaad5d9f2db2f4ca55f3af7f992989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BtnSkin: {fileID: 11400000, guid: 8d7691810c43e4f428c3f2a969c82356, type: 2}
+  BtnSkin: {fileID: 11400000, guid: 066ad7b954d65f64f8895c2969aa04d5, type: 2}
   fadeImage: {fileID: 2800000, guid: 8cfe0f5d0e94dff4eb124dfb6c67f182, type: 3}
   fadeSpeed: 1
   showRetry: 1
@@ -2265,6 +2266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c2ae51cbd09bc4eb50008a08e73cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passthroughByJump: 0
 --- !u!61 &86735523
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2987,6 +2989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c2ae51cbd09bc4eb50008a08e73cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passthroughByJump: 0
 --- !u!61 &190841451
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3581,6 +3584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c2ae51cbd09bc4eb50008a08e73cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passthroughByJump: 0
 --- !u!61 &277251719
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5623,6 +5627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c2ae51cbd09bc4eb50008a08e73cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passthroughByJump: 0
 --- !u!61 &487700873
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9131,6 +9136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c2ae51cbd09bc4eb50008a08e73cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passthroughByJump: 0
 --- !u!61 &1001833156
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12615,6 +12621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c2ae51cbd09bc4eb50008a08e73cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passthroughByJump: 0
 --- !u!61 &1532308588
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14958,6 +14965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c2ae51cbd09bc4eb50008a08e73cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passthroughByJump: 0
 --- !u!61 &1824734781
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16100,6 +16108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c2ae51cbd09bc4eb50008a08e73cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passthroughByJump: 0
 --- !u!61 &1957992499
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16566,6 +16575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c2ae51cbd09bc4eb50008a08e73cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passthroughByJump: 0
 --- !u!61 &2032788965
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16813,6 +16823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c2ae51cbd09bc4eb50008a08e73cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passthroughByJump: 0
 --- !u!1001 &2080971381
 Prefab:
   m_ObjectHideFlags: 0

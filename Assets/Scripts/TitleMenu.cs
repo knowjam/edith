@@ -4,6 +4,7 @@ using System.Collections;
 public class TitleMenu : EdMonoBehaviour
 {
     public GUISkin BtnSkin;
+    public bool enableTestStageMenu;
     public string[] testStages;
 
     void Start()
@@ -24,17 +25,24 @@ public class TitleMenu : EdMonoBehaviour
 
         GUI.color = new Color(1, 1, 1, 1.0f - gg.fadeImageAlpha);
 
-        if (GUI.Button(new Rect(Screen.width / 2 + 15, Screen.height / 2 + 40 + 50 * 0, 130, 50), "Start", BtnSkin.button))
+        //if (GUI.Button(new Rect(Screen.width / 2 + 15, Screen.height / 2 + 40 + 50 * 0, Screen.width / 5.0f, Screen.width / 5.0f / 2), "Start", BtnSkin.button))
+        GUILayout.BeginArea(new Rect(Screen.width / 1.6f, Screen.height / 3.3f, Screen.width / 4, Screen.height/2.2f));
+        //if (GUILayout.Button("Start", BtnSkin.button, GUILayout.MaxWidth(Screen.width/4), GUILayout.MaxHeight(Screen.height/6)))
+        if (GUILayout.Button("시작", BtnSkin.button, GUILayout.MaxHeight(Screen.height/5)))
         {
             LoadLevelWithSceneFade("Stage1");
         }
 
-        if (GUI.Button(new Rect(Screen.width / 2 + 15, Screen.height / 2 + 40 + 50 * 1, 130, 50), "Team", BtnSkin.button))
+        GUILayout.Space(Screen.height / 7);
+        
+        //if (GUI.Button(new Rect(Screen.width / 2 + 15, Screen.height / 2 + 40 + 50 * 1, Screen.width / 5.0f, Screen.width / 5.0f / 2), "Team", BtnSkin.button))
+        if (GUILayout.Button("만든 사람들", BtnSkin.button))
         {
             LoadLevelWithSceneFade("Team");
         }
+        GUILayout.EndArea();
 
-        //if (Debug.isDebugBuild)
+        if (enableTestStageMenu)
         {
             int i = 0;
             foreach (var s in testStages)

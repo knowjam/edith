@@ -33,12 +33,14 @@ public class GlobalGui : EdMonoBehaviour
 
         GUI.Label(new Rect(0, 0, 100, 100), Player.playerName);
 
-        if (showExit && GUI.Button(new Rect(Screen.width - 100, 0, 100, 50), "Exit", BtnSkin.button))
+        var buttonWidth = Screen.width / 8.0f;
+        var buttonHeight = Screen.height / 10.0f;
+        if (showExit && GUI.Button(new Rect(Screen.width - buttonWidth, 0, buttonWidth, buttonHeight), "나가기", BtnSkin.button))
         {
             LoadLevelWithSceneFade("MainMenu");
         }
 
-        if (showRetry && GUI.Button(new Rect(Screen.width - 200, 0, 100, 50), "Retry", BtnSkin.button))
+        if (showRetry && GUI.Button(new Rect(Screen.width - buttonWidth * 2, 0, buttonWidth, buttonHeight), "재시도", BtnSkin.button))
         {
             GameObject.Find("Player").GetComponent<Player>().RestartAtCheckpoint();
         }

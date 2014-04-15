@@ -3,7 +3,7 @@ guid: e9aaad5d9f2db2f4ca55f3af7f992989
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
-  - BtnSkin: {fileID: 11400000, guid: 8d7691810c43e4f428c3f2a969c82356, type: 2}
+  - BtnSkin: {fileID: 11400000, guid: 066ad7b954d65f64f8895c2969aa04d5, type: 2}
   - fadeImage: {fileID: 2800000, guid: 8cfe0f5d0e94dff4eb124dfb6c67f182, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
