@@ -7,6 +7,10 @@ public class GroundCheck : MonoBehaviour
 
     void Start()
     {
+        if (gameObject.layer == LayerMask.NameToLayer("GothroughGround"))
+        {
+            Debug.LogError(string.Format("{0}: 유령으로 통과할 수 있는 바닥에는 이 스크립트가 사용되지 않아야 합니다.", gameObject.name));
+        }
     }
 
     void Update()

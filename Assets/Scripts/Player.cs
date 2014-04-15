@@ -110,6 +110,8 @@ public class Player : EdMonoBehaviour
     BoxCollider2D boxCollider;
     public float deathHeight = -100;
     public CheckpointArea checkpointArea;
+    public Vector3 lastCheckpointAreaPosition;
+    private bool restarting;
 
     // Use this for initialization
     void Start()
@@ -136,6 +138,12 @@ public class Player : EdMonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // 재시작 중에는 Update() 처리하지 않아야 한다.
+        if (restarting)
+        {
+            return;
+        }
+
         if (transform.position.y < deathHeight)
         {
             if (Time.timeSinceLevelLoad < 1)
@@ -172,26 +180,21 @@ public class Player : EdMonoBehaviour
             if (touchGround.collider.gameObject.GetComponent<MovePlatform>())
             {
                 //boxCollider.sharedMaterial.friction = 1.0f;
-                //collider2D.enabled = false;
-                //collider2D.enabled = true;
+                //UpdateColliderByEnableToggling();
             }
             else
             {
                 //boxCollider.sharedMaterial.friction = 0.0f;
-                //collider2D.enabled = false;
-                //collider2D.enabled = true;
+                //UpdateColliderByEnableToggling();
             }
 
             boxCollider.sharedMaterial.friction = 1.0f;
-            collider2D.enabled = false;
-            collider2D.enabled = true;
-            
+            UpdateColliderByEnableToggling();
         }
         else
         {
             boxCollider.sharedMaterial.friction = 0.0f;
-            collider2D.enabled = false;
-            collider2D.enabled = true;
+            UpdateColliderByEnableToggling();
         }
 
         if (isKnockBack <= knockBackFrame)
@@ -256,20 +259,33 @@ public class Player : EdMonoBehaviour
         }
     }
 
+    private void UpdateColliderByEnableToggling()
+    {
+        if (collider2D.enabled == true)
+        {
+            collider2D.enabled = false;
+            collider2D.enabled = true;
+        }
+    }
+
     public void RestartAtCheckpoint()
     {
+        Debug.Log("==재시작 시작==");
+        restarting = true;
+
         if (checkpointArea)
         {
             // 플레이어의 아이템 습득 상태를 리셋하고
             // 체크포인트 위치로 순간이동 시켜주고
             // 레벨이 바뀌어도 사라지지 않도록 보존하자!
             transferedObject = true;
-            gameObject.transform.position = checkpointArea.transform.position;
             _haveRope = false;
             _haveBlanket = false;
             GameObject.DontDestroyOnLoad(gameObject);
 
             LoadLevelWithSceneFade(Application.loadedLevelName);
+
+            Debug.Log("저장된 체크포인트에서 재시작함...");
         }
         else
         {
@@ -321,11 +337,27 @@ public class Player : EdMonoBehaviour
             }
         }
 
-        var sp = GameObject.Find("StartPosition");
-        if (sp)
+        if (transferedObject && lastCheckpointAreaPosition != Vector3.zero)
         {
-            transform.position = sp.transform.position;
+            Debug.Log("플레이어를 마지막 체크포인트 위치로 텔레포트 시킴");
+            transform.position = lastCheckpointAreaPosition;
         }
+        else
+        {
+            var sp = GameObject.Find("StartPosition");
+            if (sp)
+            {
+                if (!transferedObject)
+                {
+                    Debug.Log("플레이어를 StartPosition으로 텔레포트 시킴");
+                    transform.position = sp.transform.position;
+                }
+            }
+        }
+        
+        restarting = false;
+        lastCheckpointAreaPosition = Vector3.zero;
+        Debug.Log("==재시작 끝==");
     }
 
     bool climbUpKeyPressed
@@ -433,7 +465,8 @@ public class Player : EdMonoBehaviour
 
     void setClimb()
     {
-        collider2D.enabled = false;
+        //collider2D.enabled = false;
+        gameObject.layer = LayerMask.NameToLayer("PlayerRope");
         isClimbing = true;
         rigidbody2D.gravityScale = 0.0f;
         _playerMesh.GetComponent<Animator>().SetInteger("state", 2);
@@ -442,8 +475,9 @@ public class Player : EdMonoBehaviour
 
     void resetClimb()
     {
+        //collider2D.enabled = true;
+        gameObject.layer = LayerMask.NameToLayer("Player");
         isClimbing = false;
-        collider2D.enabled = true;
         rigidbody2D.gravityScale = gravityScale_init;
         _playerMesh.GetComponent<Animator>().SetInteger("state", 0);
     }
@@ -474,18 +508,18 @@ public class Player : EdMonoBehaviour
     {
         if (haveRope)
         {
-            GUI.DrawTexture(new Rect(0, 0, 100, 100), ropeGuiTex);
+            GUI.DrawTexture(new Rect(0, 0, Screen.width / 7, Screen.width / 7), ropeGuiTex);
         }
         
         if (haveBlanket)
         {
-            GUI.DrawTexture(new Rect(100, 0, 100, 100), ghostGuiTex);
+            GUI.DrawTexture(new Rect(Screen.width / 7, 0, Screen.width / 7, Screen.width / 7), ghostGuiTex);
         }
 
         if (playerMode == PlayerMode.Snake)
         {
-            GUI.DrawTexture(new Rect(0, 0, 100, 100), snakeGuiTex);
-            GUI.Label(new Rect(0, 0, 100, 100), Convert.ToString(killCount), killScoreStyle);
+            GUI.DrawTexture(new Rect(0, 0, Screen.width / 7, Screen.width / 7), snakeGuiTex);
+            GUI.Label(new Rect(0, 0, Screen.width / 7, Screen.width / 7), Convert.ToString(killCount), killScoreStyle);
         }
     }
 
@@ -532,5 +566,6 @@ public class Player : EdMonoBehaviour
     internal void SetCheckpoint(CheckpointArea checkpointArea)
     {
         this.checkpointArea = checkpointArea;
+        this.lastCheckpointAreaPosition = checkpointArea.transform.position;
     }
 }

@@ -35,7 +35,7 @@ public class Moon : MonoBehaviour
                 Debug.Log("Moon disappeared!");
                 finished = true;
 
-                Application.LoadLevel("Stage1");
+                GameObject.Find("Player").GetComponent<Player>().RestartAtCheckpoint();
             }
         }
         
