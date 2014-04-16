@@ -7735,7 +7735,7 @@ GameObject:
   m_Layer: 0
   m_Name: Teleporter
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 1319202362, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -8444,6 +8444,11 @@ Prefab:
       propertyPath: nextStageName
       value: Stage3
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1af58bbee217c67488d80f30cc230906, type: 2}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 1319202362, guid: 0000000000000000d000000000000000,
+        type: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1af58bbee217c67488d80f30cc230906, type: 2}
   m_RootGameObject: {fileID: 805647915}
@@ -13871,7 +13876,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1661729758}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39.5010643, y: 1.67815995, z: 8}
+  m_LocalPosition: {x: 130.809998, y: 1.67815995, z: 8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
