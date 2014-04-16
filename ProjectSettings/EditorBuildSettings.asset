@@ -12,7 +12,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage1.unity
   - enabled: 1
-    path: Assets/Scenes/stage2x.unity
+    path: Assets/Scenes/Stage2.unity
   - enabled: 1
     path: Assets/Scenes/Stage3.unity
   - enabled: 1
