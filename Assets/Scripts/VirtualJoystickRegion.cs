@@ -88,11 +88,6 @@ public class VirtualJoystickRegion : MonoBehaviour
 
     private void Awake()
     {
-        if (Application.platform != RuntimePlatform.Android)
-        {
-            return;
-        }
-
         gameObject.transform.localScale = new Vector3(0, 0, 0);
         gameObject.transform.position = new Vector3(0, 0, 999);
         if (Screen.width > Screen.height) { size = Screen.height; } else { size = Screen.width; } VJRvector = new Vector2(0, 0);
@@ -109,11 +104,6 @@ public class VirtualJoystickRegion : MonoBehaviour
 
     private void Update()
     {
-        if (Application.platform != RuntimePlatform.Android)
-        {
-            return;
-        }
-
         if (tapTimer > 0) { tapTimer -= Time.deltaTime; }
         if (fingerID > -1 && fingerID >= Input.touchCount) { ResetJoystick(); }
         if (enable == true)
