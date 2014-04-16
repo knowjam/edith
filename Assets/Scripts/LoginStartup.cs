@@ -9,7 +9,8 @@ public class LoginStartup : EdMonoBehaviour
     // Use this for initialization
     void Start()
     {
-        
+		// 1280 ==> 40
+		btnSkin.button.fontSize = (int)(Screen.width / 1280.0f * 40);
     }
 
     private void OnInitComplete()
@@ -81,5 +82,10 @@ public class LoginStartup : EdMonoBehaviour
             isIniting = true;
             FB.Init(OnInitComplete, OnHideUnity);
         }
+
+		if (GUI.Button (new Rect (Screen.width / 2.0f - Screen.width / 2.5f / 2, Screen.height / 2.0f + Screen.height / 6.0f / 2 * 3, Screen.width / 2.5f, Screen.height / 6.0f), "로그인 없이 진행", btnSkin.button))
+		{
+			LoadLevelWithSceneFade("MainMenu");
+		}
     }
 }
