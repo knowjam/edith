@@ -9,6 +9,11 @@ public class TitleMenu : EdMonoBehaviour
 
     void Start()
     {
+		var player = GameObject.Find ("/Player");
+		if (player)
+		{
+			Destroy(player);
+		}
     }
 
     void Update()

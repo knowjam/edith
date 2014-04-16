@@ -139,7 +139,7 @@ public class Player : EdMonoBehaviour
     void Update()
     {
         // 재시작 중에는 Update() 처리하지 않아야 한다.
-        if (restarting)
+        if (restarting || Application.loadedLevelName == "MainMenu")
         {
             return;
         }
