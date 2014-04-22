@@ -51,6 +51,7 @@ public class RopeArea : MonoBehaviour
 
                 Debug.Log("로프 생성됨");
                 obj.transform.parent = transform;
+                obj.transform.localPosition = new Vector3(0, 0, 1); // 밧줄이 가장 뒤로 보이도록
             }
         }
 
