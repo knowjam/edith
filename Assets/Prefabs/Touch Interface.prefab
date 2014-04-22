@@ -176,8 +176,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeColor: {r: .816176474, g: .414089531, b: .414089531, a: 1}
   inactiveColor: {r: .595588207, g: .47734642, b: .47734642, a: 1}
-  joystick2D: {fileID: 2800000, guid: 8971e43a6cf20fe4f89dbf534f035213, type: 3}
-  background2D: {fileID: 2800000, guid: 8424e54816388334b8d4f9334db23ae5, type: 3}
+  joystick2D: {fileID: 2800000, guid: e9dcdb7ce40eef949b34f1f6ee086830, type: 3}
+  background2D: {fileID: 2800000, guid: 664ca12aa9c800f489dbef6483a14425, type: 3}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
