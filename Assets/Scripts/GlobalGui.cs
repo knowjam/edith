@@ -15,6 +15,8 @@ public class GlobalGui : EdMonoBehaviour
     void Start()
     {
         _fadeImageAlpha = 1;
+
+        BtnSkin.button.fontSize = (int)(Screen.width / 1280.0f * 50);
     }
 
     void Update()

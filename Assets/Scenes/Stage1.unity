@@ -991,7 +991,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f88e0990c0c9de34592926fbe3497712, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.19357443
+      value: -1.30461693
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f88e0990c0c9de34592926fbe3497712, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1901,7 +1901,7 @@ Transform:
   m_GameObject: {fileID: 149925600}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106829}
   m_LocalPosition: {x: -20.5218697, y: -3.05316544, z: 10.0266113}
-  m_LocalScale: {x: .344000012, y: .344000012, z: .344000012}
+  m_LocalScale: {x: .281270593, y: .281270593, z: .281270593}
   m_Children:
   - {fileID: 1683849061}
   - {fileID: 635039572}
@@ -1931,8 +1931,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 1, y: 1}
-  m_Center: {x: 0, y: 0}
+  m_Size: {x: 4.03000021, y: 2.78999996}
+  m_Center: {x: 0, y: 1.5}
 --- !u!95 &149925604
 Animator:
   serializedVersion: 2
@@ -4165,7 +4165,7 @@ Transform:
   m_PrefabInternal: {fileID: 1994624794}
   m_GameObject: {fileID: 282682634}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: -24.4765587, y: -1.00996864, z: 10}
+  m_LocalPosition: {x: -24.4765587, y: -1.10266495, z: 10}
   m_LocalScale: {x: .287199765, y: .287199765, z: .287199765}
   m_Children:
   - {fileID: 275823866}
@@ -4230,8 +4230,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 1, y: 1}
-  m_Center: {x: 0, y: 0}
+  m_Size: {x: 4.03000021, y: 2.78999996}
+  m_Center: {x: 0, y: 1.5}
 --- !u!95 &282682640
 Animator:
   serializedVersion: 2
@@ -5018,7 +5018,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 6c79e17d2798ec449802b3136bfa667f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.00778317
+      value: -3.0505662
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 6c79e17d2798ec449802b3136bfa667f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -5174,15 +5174,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 6c79e17d2798ec449802b3136bfa667f, type: 2}
       propertyPath: m_LocalScale.x
-      value: .344000012
+      value: .281270593
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 6c79e17d2798ec449802b3136bfa667f, type: 2}
       propertyPath: m_LocalScale.y
-      value: .344000012
+      value: .281270593
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 6c79e17d2798ec449802b3136bfa667f, type: 2}
       propertyPath: m_LocalScale.z
-      value: .344000012
+      value: .281270593
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c79e17d2798ec449802b3136bfa667f, type: 2}
@@ -8711,7 +8711,7 @@ GameObject:
   - 114: {fileID: 712561755}
   m_Layer: 0
   m_Name: Bear
-  m_TagString: DisposableEnemy
+  m_TagString: Untagged
   m_Icon: {fileID: -1203168336, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8723,7 +8723,7 @@ Transform:
   m_PrefabInternal: {fileID: 2139519003}
   m_GameObject: {fileID: 712561750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42.6161957, y: -1.08483887, z: 10.0266113}
+  m_LocalPosition: {x: 42.6161957, y: -1.19588137, z: 10.0266113}
   m_LocalScale: {x: .452039331, y: .452039331, z: .452039331}
   m_Children:
   - {fileID: 212028981}
@@ -10060,7 +10060,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f179c8626aa50a049bed3fabb9598dd2, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 10.5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f179c8626aa50a049bed3fabb9598dd2, type: 2}
       propertyPath: m_LocalRotation.x
@@ -10713,7 +10713,7 @@ Transform:
   m_PrefabInternal: {fileID: 78487272}
   m_GameObject: {fileID: 1035857484}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.0821648, y: -1.19357443, z: 10}
+  m_LocalPosition: {x: 26.0821648, y: -1.30461693, z: 10}
   m_LocalScale: {x: 4.20357418, y: .24742955, z: 1}
   m_Children: []
   m_Father: {fileID: 115951520}
@@ -11155,7 +11155,7 @@ GameObject:
   - 114: {fileID: 1052050338}
   m_Layer: 0
   m_Name: Bear
-  m_TagString: DisposableEnemy
+  m_TagString: Untagged
   m_Icon: {fileID: -1203168336, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12443,7 +12443,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 5cb2b09549ac43b41a3708ee3d0e4d08, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -22.6399708
+      value: -22.9813824
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5cb2b09549ac43b41a3708ee3d0e4d08, type: 2}
       propertyPath: m_LocalPosition.y
@@ -12471,7 +12471,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5cb2b09549ac43b41a3708ee3d0e4d08, type: 2}
       propertyPath: m_LocalScale.x
-      value: 6.26586866
+      value: 7.36239529
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5cb2b09549ac43b41a3708ee3d0e4d08, type: 2}
       propertyPath: m_LocalScale.y
@@ -15678,7 +15678,7 @@ Transform:
   m_PrefabInternal: {fileID: 930679891}
   m_GameObject: {fileID: 1491184420}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.02351737, y: -2.5, z: 10.5}
+  m_LocalPosition: {x: 3.02351737, y: -2.5, z: 10}
   m_LocalScale: {x: -.342444986, y: .25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -16974,8 +16974,8 @@ Transform:
   m_PrefabInternal: {fileID: 1225926400}
   m_GameObject: {fileID: 1624362287}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.6399708, y: -1.23144388, z: 10}
-  m_LocalScale: {x: 6.26586866, y: .25, z: 1}
+  m_LocalPosition: {x: -22.9813824, y: -1.23144388, z: 10}
+  m_LocalScale: {x: 7.36239529, y: .25, z: 1}
   m_Children: []
   m_Father: {fileID: 115951520}
 --- !u!114 &1624362292
@@ -17185,7 +17185,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1661729758}
   m_LocalRotation: {x: 0, y: .00329363276, z: 0, w: .999994576}
-  m_LocalPosition: {x: 102.216454, y: -2.66516519, z: 7.50731373}
+  m_LocalPosition: {x: 24.4126663, y: -2.66516519, z: 7.50731373}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -17203,7 +17203,7 @@ GameObject:
   - 114: {fileID: 1666333210}
   m_Layer: 0
   m_Name: Bear
-  m_TagString: DisposableEnemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19271,7 +19271,7 @@ Transform:
   m_PrefabInternal: {fileID: 376572437}
   m_GameObject: {fileID: 1877714018}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: -22.7842941, y: -3.00778317, z: 9.99999237}
+  m_LocalPosition: {x: -22.7842941, y: -3.0505662, z: 9.99999237}
   m_LocalScale: {x: .287199765, y: .287199765, z: .287199765}
   m_Children:
   - {fileID: 1420039494}
@@ -19336,8 +19336,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 1, y: 1}
-  m_Center: {x: 0, y: 0}
+  m_Size: {x: 4.03000021, y: 2.78999996}
+  m_Center: {x: 0, y: 1.5}
 --- !u!95 &1877714024
 Animator:
   serializedVersion: 2
@@ -20029,7 +20029,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 6c79e17d2798ec449802b3136bfa667f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.00996864
+      value: -1.10266495
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 6c79e17d2798ec449802b3136bfa667f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -20789,8 +20789,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 1, y: 1}
-  m_Center: {x: 0, y: 0}
+  m_Size: {x: 4.03000021, y: 2.78999996}
+  m_Center: {x: 0, y: 1.5}
 --- !u!95 &2109538079
 Animator:
   serializedVersion: 2
@@ -22051,7 +22051,7 @@ GameObject:
   - 114: {fileID: 2133078046}
   m_Layer: 0
   m_Name: Bear
-  m_TagString: DisposableEnemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22183,7 +22183,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 4049a8ba6c9f04b409e9dd9b7294d70b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.08483887
+      value: -1.19588137
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 4049a8ba6c9f04b409e9dd9b7294d70b, type: 2}
       propertyPath: m_LocalPosition.z

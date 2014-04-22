@@ -365,8 +365,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 1, y: 1}
-  m_Center: {x: 0, y: 0}
+  m_Size: {x: 4.03000021, y: 2.78999996}
+  m_Center: {x: 0, y: 1.5}
 --- !u!95 &9500000
 Animator:
   serializedVersion: 2
