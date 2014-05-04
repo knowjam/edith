@@ -95,6 +95,7 @@ public class VirtualJoystickRegion : MonoBehaviour
         joystick.texture = joystick2D; joystick.color = inactiveColor;
         backOBJ = new GameObject("VJR-Joystick Back");
         backOBJ.transform.localScale = new Vector3(0, 0, 0);
+        backOBJ.transform.parent = gameObject.transform.parent;
         background = backOBJ.AddComponent("GUITexture") as GUITexture;
         background.texture = background2D; background.color = inactiveColor;
         fingerID = -1; lastID = -1; VJRdoubleTap = false; tapTimer = 0; length = 50;
