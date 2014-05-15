@@ -57,9 +57,19 @@ public class Moon : MonoBehaviour
 
         var xRatio = (playerPositionX - startPositionX) / (finishPositionX - startPositionX);
 
-        var pos = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * (1 - xRatio), 3.0f * Screen.height / 4.0f, 0));
-        pos.z = 29;
+        Camera cam = null;
+        var camObject = GameObject.Find("Background Camera");
+        if (camObject)
+        {
+            cam = camObject.GetComponent<Camera>();
+        }
+        else
+        {
+            cam = Camera.main;
+        }
 
-        transform.position = pos;
+        var pos = cam.ScreenToWorldPoint(new Vector3(Screen.width * (1 - xRatio), 3.0f * Screen.height / 4.0f, 0));
+        
+        transform.position = new Vector3(pos.x, pos.y, transform.position.z);
     }
 }
