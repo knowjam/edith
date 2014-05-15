@@ -3,4 +3,4 @@ edith
 
 Global Game Jam 2014 Pangyo Team 'EXO'
 
-Welcome Jenkins! Again.
+Welcome Jenkins! Again. Again.
