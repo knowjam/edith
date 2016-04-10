@@ -30,6 +30,6 @@ public class BackgroundScroller : MonoBehaviour
             x += 1;
         }
 
-        renderer.material.mainTextureOffset = new Vector2(x, 0);
+        GetComponent<Renderer>().material.mainTextureOffset = new Vector2(x, 0);
     }
 }

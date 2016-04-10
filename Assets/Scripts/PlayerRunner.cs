@@ -25,7 +25,7 @@ public class PlayerRunner : MonoBehaviour
 
         transform.FindChild("PlayerRunnerMesh").GetComponent<Animator>().SetInteger("state", 1);
 
-        rigidbody2D.velocity = new Vector2(targetVelocity, 0);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(targetVelocity, 0);
 
     }
 

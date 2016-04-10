@@ -10,7 +10,7 @@ public class JumpButton : MonoBehaviour
         jumpButtonHit = false;
         foreach (var t in Input.touches)
         {
-            if (guiTexture.HitTest(t.position))
+            if (GetComponent<GUITexture>().HitTest(t.position))
             {
                 jumpButtonHit = true;
                 break;

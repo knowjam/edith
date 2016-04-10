@@ -47,7 +47,7 @@ public class RopeArea : MonoBehaviour
                 // 로프를 생성하는 구문을 놔야 됩니다.
 
                 var obj = Instantiate(playerObject.climbRopePrefab, transform.position, Quaternion.identity) as GameObject;
-                obj.transform.localScale = new Vector2(obj.transform.localScale.x, ((BoxCollider2D)gameObject.collider2D).size.y);
+                obj.transform.localScale = new Vector2(obj.transform.localScale.x, ((BoxCollider2D)gameObject.GetComponent<Collider2D>()).size.y);
 
                 Debug.Log("로프 생성됨");
                 obj.transform.parent = transform;

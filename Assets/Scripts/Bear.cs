@@ -59,11 +59,11 @@ public class Bear : MonoBehaviour
     {
         if (info.left)
         {
-            transform.rigidbody2D.velocity = new Vector2(-50, transform.rigidbody2D.velocity.y);
+            transform.GetComponent<Rigidbody2D>().velocity = new Vector2(-50, transform.GetComponent<Rigidbody2D>().velocity.y);
         }
         else
         {
-            transform.rigidbody2D.velocity = new Vector2(+50, transform.rigidbody2D.velocity.y);
+            transform.GetComponent<Rigidbody2D>().velocity = new Vector2(+50, transform.GetComponent<Rigidbody2D>().velocity.y);
         }
     }
 }

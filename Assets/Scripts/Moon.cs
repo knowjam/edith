@@ -41,7 +41,7 @@ public class Moon : MonoBehaviour
         
         float offsetX = 0.9f * ratio + 0.1f;
         
-        renderer.material.SetTextureOffset("_Mask", new Vector2(offsetX, 0.1f));
+        GetComponent<Renderer>().material.SetTextureOffset("_Mask", new Vector2(offsetX, 0.1f));
     }
 
     void LateUpdate()

@@ -123,7 +123,7 @@ public class Player : EdMonoBehaviour
         }
 
         isClimbing = false;
-        rigidbody2D.gravityScale = gravityScale_init;
+        GetComponent<Rigidbody2D>().gravityScale = gravityScale_init;
 
         isKnockBack = knockBackFrame + 1;
         walkVelocity = walkVelocity_init;
@@ -157,7 +157,7 @@ public class Player : EdMonoBehaviour
 
         var p = transform.position;
         var s = GetComponent<BoxCollider2D>().size;
-        var c = GetComponent<BoxCollider2D>().center;
+        var c = GetComponent<BoxCollider2D>().offset;
 
         var origin = p + new Vector3(c.x, c.y - s.y / 2);
 
@@ -170,9 +170,9 @@ public class Player : EdMonoBehaviour
             if (jump)
             {
                 walkVelocity = walkVelocity_init * jumpBoost_init;
-                rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpVelocity);
+                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpVelocity);
 
-                audio.PlayOneShot(jumpAudioClip);
+                GetComponent<AudioSource>().PlayOneShot(jumpAudioClip);
 
                 ConditionalRevertFromBlanket();
             }
@@ -208,7 +208,7 @@ public class Player : EdMonoBehaviour
 
         if (moveLeft)
         {
-            rigidbody2D.velocity = new Vector2(-walkVelocity, rigidbody2D.velocity.y);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(-walkVelocity, GetComponent<Rigidbody2D>().velocity.y);
 
             transform.rotation = Quaternion.Euler(0, 180, 0);
 
@@ -218,7 +218,7 @@ public class Player : EdMonoBehaviour
         }
         else if (moveRight)
         {
-            rigidbody2D.velocity = new Vector2(walkVelocity, rigidbody2D.velocity.y);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(walkVelocity, GetComponent<Rigidbody2D>().velocity.y);
 
             transform.rotation = Quaternion.Euler(0, 0, 0);
 
@@ -255,16 +255,16 @@ public class Player : EdMonoBehaviour
 
         if (moveStopped)
         {
-            rigidbody2D.velocity = new Vector2(0.0f, rigidbody2D.velocity.y);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, GetComponent<Rigidbody2D>().velocity.y);
         }
     }
 
     private void UpdateColliderByEnableToggling()
     {
-        if (collider2D.enabled == true)
+        if (GetComponent<Collider2D>().enabled == true)
         {
-            collider2D.enabled = false;
-            collider2D.enabled = true;
+            GetComponent<Collider2D>().enabled = false;
+            GetComponent<Collider2D>().enabled = true;
         }
     }
 
@@ -380,14 +380,14 @@ public class Player : EdMonoBehaviour
         if (isClimbing == false)
             setClimb();
 
-        rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
         if (climbUpKeyPressed)
         {
-            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, walkVelocity);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, walkVelocity);
         }
         else if (climbDownKeyPressed)
         {
-            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, -walkVelocity);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, -walkVelocity);
         }
     }
 
@@ -467,7 +467,7 @@ public class Player : EdMonoBehaviour
         //collider2D.enabled = false;
         gameObject.layer = LayerMask.NameToLayer("PlayerRope");
         isClimbing = true;
-        rigidbody2D.gravityScale = 0.0f;
+        GetComponent<Rigidbody2D>().gravityScale = 0.0f;
         _playerMesh.GetComponent<Animator>().SetInteger("state", 2);
         transform.rotation = Quaternion.Euler(0, 90, 0);
     }
@@ -477,7 +477,7 @@ public class Player : EdMonoBehaviour
         //collider2D.enabled = true;
         gameObject.layer = LayerMask.NameToLayer("Player");
         isClimbing = false;
-        rigidbody2D.gravityScale = gravityScale_init;
+        GetComponent<Rigidbody2D>().gravityScale = gravityScale_init;
         _playerMesh.GetComponent<Animator>().SetInteger("state", 0);
     }
 
@@ -493,14 +493,14 @@ public class Player : EdMonoBehaviour
         isKnockBack = 0;
         if (info.left)
         {
-            transform.rigidbody2D.velocity = new Vector2(-jumpVelocity, transform.rigidbody2D.velocity.y);
+            transform.GetComponent<Rigidbody2D>().velocity = new Vector2(-jumpVelocity, transform.GetComponent<Rigidbody2D>().velocity.y);
         }
         else
         {
-            transform.rigidbody2D.velocity = new Vector2(+jumpVelocity, transform.rigidbody2D.velocity.y);
+            transform.GetComponent<Rigidbody2D>().velocity = new Vector2(+jumpVelocity, transform.GetComponent<Rigidbody2D>().velocity.y);
         }
 
-        audio.PlayOneShot(knockbackAudioClip);
+        GetComponent<AudioSource>().PlayOneShot(knockbackAudioClip);
     }
 
     void OnGUI()

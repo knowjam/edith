@@ -7,14 +7,14 @@ public class RopeButton : MonoBehaviour
 
     void Update()
     {
-        guiTexture.enabled = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().haveRope;
+        GetComponent<GUITexture>().enabled = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().haveRope;
 
-        if (guiTexture.enabled)
+        if (GetComponent<GUITexture>().enabled)
         {
             ropeButtonHit = false;
             foreach (var t in Input.touches)
             {
-                if (guiTexture.HitTest(t.position))
+                if (GetComponent<GUITexture>().HitTest(t.position))
                 {
                     ropeButtonHit = true;
                     break;

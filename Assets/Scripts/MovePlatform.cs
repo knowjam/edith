@@ -37,7 +37,7 @@ public class MovePlatform : MonoBehaviour
         if (leftRight)
         {
             startPosition = transform.position.x;
-            transform.rigidbody2D.velocity = new Vector2(moveVelocity, 0.0f);
+            transform.GetComponent<Rigidbody2D>().velocity = new Vector2(moveVelocity, 0.0f);
         }
         else
         {
@@ -55,7 +55,7 @@ public class MovePlatform : MonoBehaviour
                 if (startPosition > transform.position.x)
                 {
                     curMoveLeft = false;
-                    transform.rigidbody2D.velocity = new Vector2(moveVelocity, 0.0f);
+                    transform.GetComponent<Rigidbody2D>().velocity = new Vector2(moveVelocity, 0.0f);
                     ConditionalFlipDirection();
                 }
             }
@@ -83,7 +83,7 @@ public class MovePlatform : MonoBehaviour
                 {
                     curMoveLeft = true;
                     ConditionalFlipDirection();
-                    transform.rigidbody2D.velocity = new Vector2(-moveVelocity, 0.0f);
+                    transform.GetComponent<Rigidbody2D>().velocity = new Vector2(-moveVelocity, 0.0f);
                 }
             }
             else

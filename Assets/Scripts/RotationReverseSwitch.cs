@@ -10,7 +10,7 @@ public class RotationReverseSwitch : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        renderer.material.mainTexture = pushedTex;
+        GetComponent<Renderer>().material.mainTexture = pushedTex;
 
         if (!pushed)
         {
@@ -22,6 +22,6 @@ public class RotationReverseSwitch : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        renderer.material.mainTexture = notPushedTex;
+        GetComponent<Renderer>().material.mainTexture = notPushedTex;
     }
 }

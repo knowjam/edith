@@ -91,12 +91,12 @@ public class VirtualJoystickRegion : MonoBehaviour
         gameObject.transform.localScale = new Vector3(0, 0, 0);
         gameObject.transform.position = new Vector3(0, 0, 999);
         if (Screen.width > Screen.height) { size = Screen.height; } else { size = Screen.width; } VJRvector = new Vector2(0, 0);
-        joystick = gameObject.AddComponent("GUITexture") as GUITexture;
+        joystick = gameObject.AddComponent<GUITexture>() as GUITexture;
         joystick.texture = joystick2D; joystick.color = inactiveColor;
         backOBJ = new GameObject("VJR-Joystick Back");
         backOBJ.transform.localScale = new Vector3(0, 0, 0);
         backOBJ.transform.parent = gameObject.transform.parent;
-        background = backOBJ.AddComponent("GUITexture") as GUITexture;
+        background = backOBJ.AddComponent<GUITexture>() as GUITexture;
         background.texture = background2D; background.color = inactiveColor;
         fingerID = -1; lastID = -1; VJRdoubleTap = false; tapTimer = 0; length = 50;
         position = new Vector2((Screen.width / 3) / 2, (Screen.height / 3) / 2); origin = position;

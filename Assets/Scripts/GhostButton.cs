@@ -7,14 +7,14 @@ public class GhostButton : MonoBehaviour
 
     void Update()
     {
-        guiTexture.enabled = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().haveBlanket;
+        GetComponent<GUITexture>().enabled = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().haveBlanket;
 
-        if (guiTexture.enabled)
+        if (GetComponent<GUITexture>().enabled)
         {
             ghostButtonHit = false;
             foreach (var t in Input.touches)
             {
-                if (guiTexture.HitTest(t.position))
+                if (GetComponent<GUITexture>().HitTest(t.position))
                 {
                     ghostButtonHit = true;
                     break;

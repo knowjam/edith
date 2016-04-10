@@ -21,7 +21,7 @@ public class Tramp : MonoBehaviour {
 
 		if (other.tag == "Player" && currentCooltime <= 0) {
 
-			other.gameObject.rigidbody2D.velocity += power;
+			other.gameObject.GetComponent<Rigidbody2D>().velocity += power;
             currentCooltime = cooltime;
 
 		}

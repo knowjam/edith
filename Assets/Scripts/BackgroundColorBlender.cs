@@ -16,7 +16,7 @@ public class BackgroundColorBlender : MonoBehaviour
 
         foreach (var go in GameObject.FindGameObjectsWithTag("Background"))
         {
-            go.renderer.sharedMaterial.SetFloat("_Blend", blend);
+            go.GetComponent<Renderer>().sharedMaterial.SetFloat("_Blend", blend);
         }
     }
 
